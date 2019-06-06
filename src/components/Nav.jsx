@@ -1,0 +1,37 @@
+/* eslint-disable react/prop-types */
+import React, { useRef, useEffect } from 'react';
+
+import { Link } from 'react-router-dom';
+
+import NavItem from './NavItem';
+import { addTarget, removeTarget } from './Cursor';
+
+import '../css/Nav.css';
+
+const Logo = ({ title }) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    const item = ref.current;
+
+    addTarget(item);
+
+    return () => {
+      removeTarget(item);
+    };
+  });
+  return (
+    <Link innerRef={ref} className="Logo" to="/">
+      {title.split('').map((x, i) => <span className={`char${i}`}>{x}</span>)}
+    </Link>
+  );
+};
+
+export default () => (
+  <nav>
+    <Logo title="LXSMNSYC" />
+    <NavItem target="contacts" start="contacts" end="C O N T A C T S" />
+    <NavItem target="about" start="about" end="A B O U T" />
+    <NavItem target="works" start="works" end="W O R K S" />
+    <NavItem target="menu" start="menu" end="M E N U" />
+  </nav>
+);
