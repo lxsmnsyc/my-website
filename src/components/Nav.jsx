@@ -21,7 +21,7 @@ const Logo = ({ title }) => {
   });
   return (
     <Link innerRef={ref} className="Logo" to="/">
-      {title.split('').map((x, i) => <span className={`char${i}`}>{x}</span>)}
+      {title.split('').map((x, i) => (<span className={`char${i}`}>{x}</span>))}
     </Link>
   );
 };
@@ -29,9 +29,9 @@ const Logo = ({ title }) => {
 export default () => (
   <nav>
     <Logo title="LXSMNSYC" />
-    <NavItem target="contacts" start="contacts" end="C O N T A C T S" />
-    <NavItem target="about" start="about" end="A B O U T" />
-    <NavItem target="works" start="works" end="W O R K S" />
-    <NavItem target="menu" start="menu" end="M E N U" />
+    <NavItem target="contacts" start="contacts" end="CONTACTS" />
+    <NavItem target="about" start="about" end="ABOUT" />
+    <NavItem target="works" start="works" end="WORKS" />
+    <NavItem target="menu" start="menu" end="MENU" />
   </nav>
 );
