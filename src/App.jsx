@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 
 import Index from './pages/Index';
 import Menu from './pages/Menu';
@@ -12,7 +12,7 @@ import Nav from './components/Nav';
 import Cursor from './components/Cursor';
 
 export default () => (
-  <BrowserRouter>
+  <HashRouter hashType="slash">
     <Nav />
     <Route exact path="/" component={Index} />
     <Route path="/about" component={About} />
@@ -20,5 +20,5 @@ export default () => (
     <Route path="/menu" component={Menu} />
     <Route path="/contacts" component={Contacts} />
     <Cursor />
-  </BrowserRouter>
+  </HashRouter>
 );
