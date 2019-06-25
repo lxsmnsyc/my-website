@@ -21,7 +21,7 @@ const Logo = ({ title }) => {
   });
   return (
     <Link innerRef={ref} className="Logo" to="/">
-      {title.split('').map((x, i) => (<span className={`char${i}`}>{x}</span>))}
+      {title.split('').map((x, i) => (<span key={`char${i}`} className={`char${i}`}>{x}</span>))}
     </Link>
   );
 };
