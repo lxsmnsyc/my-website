@@ -72,7 +72,7 @@ export default function AppHead() {
       <meta property="og:title" content={TITLE} />
       <meta property="og:image" content={IMAGE} />
       <meta property="og:description" content={DESCRIPTION} />
-      <meta property="og:site_name" content="Lyon" />
+      <meta property="og:site_name" content="@lxsmnsyc" />
       <meta property="og:locale" content="en_PH" />
       <meta property="og:image:width" content={WIDTH} />
       <meta property="og:image:height" content={HEIGHT} />
