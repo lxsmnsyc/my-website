@@ -50,6 +50,7 @@ const HOBBIES = [
   ' like watching anime.',
   ' love dogs!',
   '\'m an introvert.',
+  '\'m the VP of R&D and SE in Lyon.com.ph.',
 ];
 
 const COOLDOWN = 2.0;
@@ -104,11 +105,11 @@ const Hobbies = React.memo(() => {
         start = timestamp;
 
         if (target) {
-          if (timer < DURATION) {
-            timer += elapsed;
-            setName(stringLerp(base, target, timer / DURATION, false));
+          if (timer > 0) {
+            timer -= elapsed;
+            setName(stringLerp(target, base, timer / DURATION, false));
           } else {
-            timer = 0;
+            timer = DURATION;
             base = target;
             target = undefined;
           }

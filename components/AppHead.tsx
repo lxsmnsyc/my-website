@@ -27,6 +27,7 @@
  */
 import React from 'react';
 import Head from 'next/head';
+import { SOCIAL } from './Social';
 
 const TITLE = '@lxsmnsyc';
 const DESCRIPTION = 'Hello! I\'m Alexis H. Munsayac!';
@@ -80,6 +81,14 @@ export default function AppHead() {
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@lxsmnsyc" />
       <meta name="twitter:creator" content="@lxsmnsyc" />
+      {/* Prefetch */}
+      {
+        SOCIAL.map((item) => (
+          item.link.startsWith('http')
+            ? <link rel="prefetch" href={item.link} key={item.key} />
+            : null
+        ))
+      }
     </Head>
   );
 }

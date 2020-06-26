@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@lxsmnsyc/react-scoped-model": "^0.12.1",
+    "@zeit-ui/react-icons": "^1.3.0",
     "next": "^9.4.4",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",

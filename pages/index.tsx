@@ -35,6 +35,7 @@ import TextInnerContainer from '../components/TextInnerContainer';
 import Greetings from '../components/Greetings';
 import Hobbies from '../components/Hobbies';
 import AppHead from '../components/AppHead';
+import Social from '../components/Social';
 
 export default function Index() {
   return (
@@ -46,6 +47,7 @@ export default function Index() {
           <TextInnerContainer>
             <Greetings />
             <Hobbies />
+            <Social />
           </TextInnerContainer>
         </TextOuterContainer>
       </Container>
