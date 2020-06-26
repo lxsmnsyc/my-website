@@ -35,7 +35,7 @@ import { styled } from 'styletron-react';
 const ICON_SIZE = 24;
 
 export const SOCIAL = [
-  { key: 'codepen', Icon: Codepen, link: 'http://codepen.io/lxsmnsyc' },
+  { key: 'codepen', Icon: Codepen, link: 'https://codepen.io/lxsmnsyc' },
   { key: 'github', Icon: Github, link: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/' },
   { key: 'linkedin', Icon: Linkedin, link: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/' },
   { key: 'twitter', Icon: Twitter, link: 'https://twitter.com/lxsmnsyc' },
