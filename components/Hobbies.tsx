@@ -57,7 +57,7 @@ const COOLDOWN = 2.0;
 const DURATION = 0.4;
 
 const Paragraph = styled('p', {
-  fontFamily: 'system, "Arial", sans-serif',
+  fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
   color: 'white',
   fontSize: '2rem',
 });

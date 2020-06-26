@@ -36,7 +36,7 @@ const SECRET_NAME = '@lxsmnsyc';
 const DURATION = 0.4;
 
 const H1 = styled('h1', {
-  fontFamily: 'system, "Arial", sans-serif',
+  fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
   color: 'white',
   fontSize: '3rem',
 });
