@@ -47,6 +47,7 @@ const SocialMediaList = styled('ul', {
   paddingLeft: '0px',
   display: 'flex',
   flexDirection: 'row',
+  listStyle: 'none',
 });
 
 const SocialMediaListItem = styled('li', {
