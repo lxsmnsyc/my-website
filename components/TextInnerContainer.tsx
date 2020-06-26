@@ -1,7 +1,7 @@
 import { styled } from 'styletron-react';
 
 const TextInnerContainer = styled('div', {
-  width: '50%',
+  width: '75%',
   height: '100%',
 
   display: 'flex',
@@ -9,8 +9,8 @@ const TextInnerContainer = styled('div', {
   alignItems: 'flex-start',
   justifyContent: 'center',
 
-  marginLeft: '16px',
-  marginRight: '16px',
+  marginLeft: '32px',
+  marginRight: '32px',
   marginTop: '16px',
   marginBottom: '16px',
 

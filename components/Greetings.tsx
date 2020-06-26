@@ -30,14 +30,15 @@ import { styled } from 'styletron-react';
 import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
 import stringLerp from '../utils/string-lerp';
 
-const BASE_NAME = 'Alexis Munsayac';
-const SECRET_NAME = 'lxsmnsyc';
+const BASE_NAME = 'Alexis H. Munsayac';
+const SECRET_NAME = '@lxsmnsyc';
 
 const DURATION = 0.4;
 
 const H1 = styled('h1', {
   fontFamily: 'system, "Arial", sans-serif',
   color: 'white',
+  fontSize: '3rem',
 });
 
 const Greetings = React.memo(() => {
@@ -66,11 +67,11 @@ const Greetings = React.memo(() => {
         if (!inside) {
           if (timer > 0.0) {
             timer -= elapsed;
-            setName(stringLerp(BASE_NAME, SECRET_NAME, timer / DURATION, false));
+            setName(stringLerp(BASE_NAME, SECRET_NAME, timer / DURATION, true));
           }
         } else if (timer < DURATION) {
           timer += elapsed;
-          setName(stringLerp(BASE_NAME, SECRET_NAME, timer / DURATION, false));
+          setName(stringLerp(BASE_NAME, SECRET_NAME, timer / DURATION, true));
         }
 
         raf = requestAnimationFrame(onUpdate);
