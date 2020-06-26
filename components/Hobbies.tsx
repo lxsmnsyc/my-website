@@ -53,7 +53,7 @@ const HOBBIES = [
   '\'m the VP of R&D and SE in Lyon.com.ph.',
 ];
 
-const COOLDOWN = 2.0;
+const COOLDOWN = 5.0;
 const DURATION = 0.4;
 
 const Paragraph = styled('p', {
