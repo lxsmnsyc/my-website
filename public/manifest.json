@@ -1,5 +1,19 @@
 {
- "name": "App",
+ "name": "Alexis H. Munsayac",
+ "background_color": "#0F0F10",
+ "categories": [
+   "personalization",
+   "productivity"
+ ],
+ "description": "Hello! I'm Alexis H. Munsayac!",
+ "dir": "ltr",
+ "display": "fullscreen",
+ "lang": "en-PH",
+ "orientation": "any",
+ "scope": "/",
+ "short_name": "@lxsmnsyc",
+ "start_url": "/",
+ "theme_color": "#5B36C9",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
