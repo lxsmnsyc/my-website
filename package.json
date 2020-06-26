@@ -1,46 +1,47 @@
 {
   "name": "my-website",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1",
-    "react-use": "^9.3.0",
-    "styled-components": "^4.3.2"
-  },
+  "version": "1.0.0",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc",
+    "lint:components": "eslint \"./components/**/*.{js,ts,tsx,json}\"",
+    "lint:pages": "eslint \"./pages/**/*.{js,ts,tsx,json}\"",
+    "lint:models": "eslint \"./models/**/*.{js,ts,tsx,json}\"",
+    "lint:utils": "eslint \"./utils/**/*.{js,ts,tsx,json}\""
   },
-  "eslintConfig": {
-    "extends": "react-app",
-    "plugins": [
-      "babel-plugin-styled-components"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@lxsmnsyc/react-scoped-model": "^0.12.1",
+    "next": "^9.4.4",
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styletron-engine-atomic": "^1.4.6",
+    "styletron-react": "^5.2.7"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.2",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.14.2"
-  }
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/styletron-engine-atomic": "^1.1.0",
+    "@types/styletron-react": "^5.0.2",
+    "@types/styletron-standard": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "eslint": "^7.3.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-import-resolver-node": "^0.3.2",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "typescript": "^3.9.5"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/LXSMNSYC/my-website.git",
+  "author": "Alexis Munsayac <alexis.munsayac@gmail.com>",
+  "private": false
 }
