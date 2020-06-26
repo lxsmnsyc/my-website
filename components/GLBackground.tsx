@@ -66,12 +66,28 @@ function getResolution(scale: number): Resolution {
   };
 }
 
-function loadShader(
+function protect<T>(promise: Promise<T>, checkMount: () => boolean): Promise<T> {
+  return new Promise<T>((res, rej) => {
+    promise.then(
+      (value) => checkMount() && res(value),
+      (value) => checkMount() && rej(value),
+    );
+  });
+}
+
+type Promisify = <T>(deferred: () => T) => Promise<T>;
+
+function deferWrapper(checkMount: () => boolean): Promisify {
+  return (deferred) => protect(Promise.resolve().then(deferred), checkMount);
+}
+
+async function loadShader(
   context: WebGLRenderingContext,
   type: number,
   source: string,
+  promisify: Promisify,
 ) {
-  const shader = context.createShader(type);
+  const shader = await promisify(() => context.createShader(type));
 
   if (!shader) {
     return null;
@@ -79,11 +95,11 @@ function loadShader(
 
   // Send the source to the shader object
 
-  context.shaderSource(shader, source);
+  await promisify(() => context.shaderSource(shader, source));
 
   // Compile the shader program
 
-  context.compileShader(shader);
+  await promisify(() => context.compileShader(shader));
 
   // See if it compiled successfully
 
@@ -96,19 +112,30 @@ function loadShader(
   return shader;
 }
 
-function initShaderProgram(
+async function initShaderProgram(
   renderContext: WebGLRenderingContext,
   fragment: string,
+  promisify: Promisify,
 ) {
-  const vertexShader = loadShader(renderContext, renderContext.VERTEX_SHADER, VERTEX);
-  const fragmentShader = loadShader(renderContext, renderContext.FRAGMENT_SHADER, fragment);
+  const vertexShader = await loadShader(
+    renderContext,
+    renderContext.VERTEX_SHADER,
+    VERTEX,
+    promisify,
+  );
+  const fragmentShader = await loadShader(
+    renderContext,
+    renderContext.FRAGMENT_SHADER,
+    fragment,
+    promisify,
+  );
 
   // Create the shader program
-  const shaderProgram = renderContext.createProgram();
+  const shaderProgram = await promisify(() => renderContext.createProgram());
   if (shaderProgram && vertexShader && fragmentShader) {
-    renderContext.attachShader(shaderProgram, vertexShader);
-    renderContext.attachShader(shaderProgram, fragmentShader);
-    renderContext.linkProgram(shaderProgram);
+    await promisify(() => renderContext.attachShader(shaderProgram, vertexShader));
+    await promisify(() => renderContext.attachShader(shaderProgram, fragmentShader));
+    await promisify(() => renderContext.linkProgram(shaderProgram));
 
     // If creating the shader program failed, alert
     if (!renderContext.getProgramParameter(shaderProgram, renderContext.LINK_STATUS)) {
@@ -153,85 +180,98 @@ const GLBackground = React.memo(({ scale, fragment }: GLBackgroundProps) => {
       return undefined;
     }
 
-    const program = initShaderProgram(gl, fragment);
+    let mounted = true;
+    let updateReso: undefined | (() => void);
 
-    if (!program) {
-      return undefined;
-    }
-
-    const ploc = gl.getAttribLocation(program, 'a_position');
-
-    const pbuff = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, pbuff);
-
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([
-        -1.0, -1.0,
-        1.0, -1.0,
-        -1.0, 1.0,
-        -1.0, 1.0,
-        1.0, -1.0,
-        1.0, 1.0]),
-      gl.STATIC_DRAW,
-    );
-
-    const uTime = gl.getUniformLocation(program, 'time');
-    const uMouse = gl.getUniformLocation(program, 'mouse');
-    const uRes = gl.getUniformLocation(program, 'resolution');
-    const uORes = gl.getUniformLocation(program, 'oreso');
-
-    let time = 0.0;
-    let stamp = 0.0;
-
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
-    const render = () => {
-      gl.clearColor(0.0, 0.0, 0.0, 1.0);
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-      gl.useProgram(program);
-
-      gl.bindBuffer(gl.ARRAY_BUFFER, pbuff);
-      gl.enableVertexAttribArray(ploc);
-      gl.vertexAttribPointer(ploc, 2, gl.FLOAT, false, 0, 0);
-      gl.uniform1f(uTime, time);
-      gl.uniform2f(uMouse, getX(), getY());
-      gl.uniform2f(uRes, currentWidth, currentHeight);
-      gl.uniform2f(uORes, currentWidth / scale, currentHeight / scale);
-
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-    };
-
-    const updateReso = () => {
-      const currentResolution = getResolution(scale);
-
-      canvas.width = currentResolution.width;
-      canvas.height = currentResolution.height;
-
-      currentWidth = currentResolution.width;
-      currentHeight = currentResolution.height;
-
-      gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-    };
-
-    window.addEventListener('resize', updateReso);
-
-    let start = 0;
     let raf = 0;
 
-    const update: FrameRequestCallback = (ev) => {
-      if (!start) start = ev;
-      stamp = ev - start;
-      time = stamp / 1000.0;
-      render();
-      raf = requestAnimationFrame(update);
-    };
+    const promisedProgram = initShaderProgram(gl, fragment, deferWrapper(() => mounted));
 
-    raf = requestAnimationFrame(update);
+    promisedProgram
+      .then((program) => {
+        if (!program) {
+          return;
+        }
+
+        const ploc = gl.getAttribLocation(program, 'a_position');
+
+        const pbuff = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, pbuff);
+
+        gl.bufferData(
+          gl.ARRAY_BUFFER,
+          new Float32Array([
+            -1.0, -1.0,
+            1.0, -1.0,
+            -1.0, 1.0,
+            -1.0, 1.0,
+            1.0, -1.0,
+            1.0, 1.0]),
+          gl.STATIC_DRAW,
+        );
+
+        const uTime = gl.getUniformLocation(program, 'time');
+        const uMouse = gl.getUniformLocation(program, 'mouse');
+        const uRes = gl.getUniformLocation(program, 'resolution');
+        const uORes = gl.getUniformLocation(program, 'oreso');
+
+        let time = 0.0;
+        let stamp = 0.0;
+
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+        const render = () => {
+          gl.clearColor(0.0, 0.0, 0.0, 1.0);
+          gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+          gl.useProgram(program);
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, pbuff);
+          gl.enableVertexAttribArray(ploc);
+          gl.vertexAttribPointer(ploc, 2, gl.FLOAT, false, 0, 0);
+          gl.uniform1f(uTime, time);
+          gl.uniform2f(uMouse, getX(), getY());
+          gl.uniform2f(uRes, currentWidth, currentHeight);
+          gl.uniform2f(uORes, currentWidth / scale, currentHeight / scale);
+
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+        };
+
+        updateReso = () => {
+          const currentResolution = getResolution(scale);
+
+          canvas.width = currentResolution.width;
+          canvas.height = currentResolution.height;
+
+          currentWidth = currentResolution.width;
+          currentHeight = currentResolution.height;
+
+          gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+        };
+
+        window.addEventListener('resize', updateReso);
+
+        let start = 0;
+
+        const update: FrameRequestCallback = (ev) => {
+          if (!start) start = ev;
+          stamp = ev - start;
+          time = stamp / 1000.0;
+          render();
+          raf = requestAnimationFrame(update);
+        };
+
+        raf = requestAnimationFrame(update);
+      })
+      .catch(() => {
+        // handle error
+      });
 
     return () => {
-      window.removeEventListener('resize', updateReso);
+      if (updateReso) {
+        window.removeEventListener('resize', updateReso);
+      }
       cancelAnimationFrame(raf);
+      mounted = false;
     };
   }, [scale, fragment]);
 

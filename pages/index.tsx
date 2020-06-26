@@ -26,8 +26,8 @@
  * @copyright Alexis Munsayac 2020
  */
 import React from 'react';
+import dynamic from 'next/dynamic';
 
-import DarkBlob from '../components/DarkBlob';
 import SmoothCursor from '../models/SmoothCursor';
 import Container from '../components/Container';
 import TextOuterContainer from '../components/TextOuterContainer';
@@ -36,6 +36,11 @@ import Greetings from '../components/Greetings';
 import Hobbies from '../components/Hobbies';
 import AppHead from '../components/AppHead';
 import Social from '../components/Social';
+
+const DarkBlob = dynamic<any>(
+  () => import('../components/DarkBlob')
+    .then((mod) => mod.default),
+);
 
 export default function Index() {
   return (

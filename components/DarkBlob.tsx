@@ -58,10 +58,10 @@ vec3 rotatez(in vec3 p, float ang) {
 
 float scene(vec3 p) {
   vec2 offset = mouse / resolution;
-  p = rotatex(p, offset.y * -PI); 
-  p = rotatey(p, offset.x * -PI); 
-  p = rotatez(p, 1.0); 
-  float d1 = length(p) - 0.5 + sin(-4.0 * time + 60.0 * p.x) * 0.01 + sin(1.5 * time + 50.0 * p.x * p.z) * 0.02; 
+  p = rotatex(p, PI * (1.0 - offset.y * 2.0)); 
+  p = rotatey(p, 1.0); 
+  p = rotatez(p, PI * (1.0 - offset.x * 2.0)); 
+  float d1 = length(p) - 0.5 + sin(-6.0 * time + 60.0 * p.x) * 0.01 + sin(1.5 * time + 60.0 * p.x) * 0.02; 
   return d1;
 }
 
