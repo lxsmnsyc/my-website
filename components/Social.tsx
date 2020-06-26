@@ -27,14 +27,25 @@
  */
 import React from 'react';
 
-import {
-  Github, Codepen, Linkedin, Twitter, Mail, Globe,
-} from '@zeit-ui/react-icons';
+import { Icon } from '@zeit-ui/react-icons';
+import Codepen from '@zeit-ui/react-icons/codepen';
+import Github from '@zeit-ui/react-icons/github';
+import Linkedin from '@zeit-ui/react-icons/linkedin';
+import Twitter from '@zeit-ui/react-icons/twitter';
+import Globe from '@zeit-ui/react-icons/globe';
+import Mail from '@zeit-ui/react-icons/mail';
+
 import { styled } from 'styletron-react';
 
 const ICON_SIZE = 24;
 
-export const SOCIAL = [
+interface SocialItem {
+  key: string;
+  link: string;
+  Icon: Icon;
+}
+
+export const SOCIAL: SocialItem[] = [
   { key: 'codepen', Icon: Codepen, link: 'https://codepen.io/lxsmnsyc' },
   { key: 'github', Icon: Github, link: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/' },
   { key: 'linkedin', Icon: Linkedin, link: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/' },
