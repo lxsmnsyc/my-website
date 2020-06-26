@@ -76,6 +76,10 @@ export default function AppHead() {
       <meta property="og:locale" content="en_PH" />
       <meta property="og:image:width" content={WIDTH} />
       <meta property="og:image:height" content={HEIGHT} />
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@lxsmnsyc" />
+      <meta name="twitter:creator" content="@lxsmnsyc" />
     </Head>
   );
 }
