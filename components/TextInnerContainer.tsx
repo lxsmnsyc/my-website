@@ -29,7 +29,6 @@ import { styled } from 'styletron-react';
 
 const TextInnerContainer = styled('div', {
   width: '75%',
-  height: '100%',
 
   display: 'flex',
   flexDirection: 'column',
