@@ -61,6 +61,18 @@ export function reportWebVitals({ name, delta, id }: WebVitalsParam) {
     // Use a non-interaction event to avoid affecting bounce rate.
     non_interaction: true,
   });
+  gtag('event', 'timing_complete', {
+    event_category: 'Web Vitals',
+    name,
+    value: Math.round(name === 'CLS' ? delta * 1000 : delta),
+    // The `id` value will be unique to the current page load. When sending
+    // multiple values from the same page (e.g. for CLS), Google Analytics can
+    // compute a total by grouping on this ID (note: requires `eventLabel` to
+    // be a dimension in your report).
+    event_label: id,
+    // Use a non-interaction event to avoid affecting bounce rate.
+    non_interaction: true,
+  });
 }
 
 export default function App({ Component, pageProps }: AppProps) {
