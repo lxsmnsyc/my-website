@@ -54,7 +54,7 @@ const HOBBIES = [
 ];
 
 const COOLDOWN = 5.0;
-const DURATION = 0.4;
+const DURATION = 1.0;
 
 const Paragraph = styled('p', {
   fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',

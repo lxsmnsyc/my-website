@@ -25,8 +25,12 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
+const ease = (x: number): number => (
+  x < 0.5 ? 8 * x * x * x * x : 1 - ((-2 * x + 2) ** 4) / 2
+);
+
 const lerp = (a: number, b: number, t: number): number => (
-  a + (b - a) * (t * t * (3 - 2 * t))
+  a + (b - a) * ease(t)
 );
 
 const charLerp = (a: string, b: string, t: number): string => (

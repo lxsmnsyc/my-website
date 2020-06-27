@@ -33,7 +33,7 @@ import stringLerp from '../utils/string-lerp';
 const BASE_NAME = 'Alexis H. Munsayac';
 const SECRET_NAME = '@lxsmnsyc';
 
-const DURATION = 0.4;
+const DURATION = 1.0;
 
 const H1 = styled('h1', {
   fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
