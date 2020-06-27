@@ -47,7 +47,7 @@ interface SocialItem {
 
 export const SOCIAL: SocialItem[] = [
   { key: 'codepen', Icon: Codepen, link: 'https://codepen.io/lxsmnsyc' },
-  { key: 'github', Icon: Github, link: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/' },
+  { key: 'github', Icon: Github, link: 'https://github.com/lxsmnsyc' },
   { key: 'linkedin', Icon: Linkedin, link: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/' },
   { key: 'twitter', Icon: Twitter, link: 'https://twitter.com/lxsmnsyc' },
   { key: 'globe', Icon: Globe, link: 'https://lyon.com.ph' },
