@@ -26,7 +26,7 @@
  * @copyright Alexis Munsayac 2020
  */
 // ANCHOR Next
-import App from 'next/app';
+import { AppProps } from 'next/app';
 
 // ANCHOR React
 import React from 'react';
@@ -40,31 +40,37 @@ import { debug, styletron } from '../utils/styletron';
 // ANCHOR CSS
 import 'normalize.css/normalize.css';
 
-export default class LyonApp extends App {
-  // Only uncomment this method if you have blocking data requirements for
-  // every single page in your application. This disables the ability to
-  // perform automatic static optimization, causing every page in your app to
-  // be server-side rendered.
-  //
-  // public static async getInitialProps(appContext: AppContext) {
-  //   // calls page's `getInitialProps` and fills `appProps.pageProps`
-  //   const appProps = await App.getInitialProps(appContext);
+interface WebVitalsParam {
+  name: string;
+  delta: number;
+  id: string;
+}
 
-  //   return { ...appProps }
-  // }
+export function reportWebVitals({ name, delta, id }: WebVitalsParam) {
+  gtag('event', name, {
+    event_category: 'Web Vitals',
+    // Google Analytics metrics must be integers, so the value is rounded.
+    // For CLS the value is first multiplied by 1000 for greater precision
+    // (note: increase the multiplier for greater precision if needed).
+    value: Math.round(name === 'CLS' ? delta * 1000 : delta),
+    // The `id` value will be unique to the current page load. When sending
+    // multiple values from the same page (e.g. for CLS), Google Analytics can
+    // compute a total by grouping on this ID (note: requires `eventLabel` to
+    // be a dimension in your report).
+    event_label: id,
+    // Use a non-interaction event to avoid affecting bounce rate.
+    non_interaction: true,
+  });
+}
 
-  public render(): JSX.Element {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { Component, pageProps } = this.props;
-
-    return (
-      <StyletronProvider
-        value={styletron}
-        debug={debug}
-        debugAfterHydration
-      >
-        <Component {...pageProps} />
-      </StyletronProvider>
-    );
-  }
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <StyletronProvider
+      value={styletron}
+      debug={debug}
+      debugAfterHydration
+    >
+      <Component {...pageProps} />
+    </StyletronProvider>
+  );
 }
