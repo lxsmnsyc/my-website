@@ -66,7 +66,7 @@ float scene(vec3 p) {
   float s = sin(k * p.y);
   mat2  m = mat2(c, -s, s, c);
   vec3  q = vec3(m * p.xz, p.y);
-  float d1 = length(q) - 0.5 + sin(-6.0 * time + 60.0 * q.x) * 0.01; 
+  float d1 = length(q) - 0.75 + sin(-6.0 * time + 60.0 * q.x) * 0.01; 
   return d1;
 }
 
