@@ -25,10 +25,10 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import React from 'react';
+import React, { memo, useRef } from 'react';
 import { styled } from 'styletron-react';
 import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
-import SmoothCursor from '../models/SmoothCursor';
+import { useSmoothCursor } from '../models/SmoothCursor';
 
 const Canvas = styled('canvas', {
   width: '100%',
@@ -154,13 +154,10 @@ export interface GLBackgroundProps {
   fragment: string;
 }
 
-const GLBackground = React.memo(({ scale, fragment }: GLBackgroundProps) => {
-  const [getX, getY] = SmoothCursor.useSelectors((state) => [
-    state.getX,
-    state.getY,
-  ]);
+const GLBackground = memo(({ scale, fragment }: GLBackgroundProps) => {
+  const [getX, getY] = useSmoothCursor();
 
-  const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useIsomorphicEffect(() => {
     const canvas = canvasRef.current;

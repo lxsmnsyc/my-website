@@ -25,14 +25,14 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import createModel from '@lxsmnsyc/react-scoped-model';
+import { createNullaryModel, createSelectors } from 'react-scoped-model';
 import { useRef } from 'react';
 
 // Hooks
 import useConstantCallback from '../utils/hooks/useConstantCallback';
 import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
 
-const SmoothCursor = createModel(() => {
+const SmoothCursor = createNullaryModel(() => {
   const xRef = useRef(0);
   const yRef = useRef(0);
 
@@ -86,6 +86,16 @@ const SmoothCursor = createModel(() => {
     getX,
     getY,
   };
+}, {
+  displayName: 'SmoothCursor',
 });
+
+export const useSmoothCursor = createSelectors(
+  SmoothCursor,
+  (state) => [
+    state.getX,
+    state.getY,
+  ],
+);
 
 export default SmoothCursor;

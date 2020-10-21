@@ -26,6 +26,7 @@
  * @copyright Alexis Munsayac 2020
  */
 import { styled } from 'styletron-react';
+import { gradientStyle } from '../utils/gradient';
 
 const TextOuterContainer = styled('div', {
   gridRow: '1 / 2',
@@ -37,6 +38,7 @@ const TextOuterContainer = styled('div', {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'flex-start',
+  ...gradientStyle,
 });
 
 export default TextOuterContainer;

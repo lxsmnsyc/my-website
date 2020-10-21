@@ -30,7 +30,7 @@ import React from 'react';
 
 // ANCHOR Next
 import Document, {
-  DocumentContext, Head, Main, NextScript,
+  DocumentContext, Head, Html, Main, NextScript,
 } from 'next/document';
 
 // ANCHOR Styletron
@@ -62,7 +62,7 @@ export default class CustomDocument extends Document<CustomDocumentProps> {
   public render(): JSX.Element {
     const { stylesheets } = this.props;
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
           {
             stylesheets && stylesheets.map((sheet: Sheet) => (
@@ -98,7 +98,7 @@ export default class CustomDocument extends Document<CustomDocumentProps> {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

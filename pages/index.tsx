@@ -40,6 +40,9 @@ import Social from '../components/Social';
 const DarkBlob = dynamic<any>(
   () => import('../components/DarkBlob')
     .then((mod) => mod.default),
+  {
+    ssr: false,
+  },
 );
 
 export default function Index() {

@@ -36,6 +36,7 @@ import Globe from '@zeit-ui/react-icons/globe';
 import Mail from '@zeit-ui/react-icons/mail';
 
 import { styled } from 'styletron-react';
+import { memo } from 'react';
 
 const ICON_SIZE = 24;
 
@@ -70,10 +71,10 @@ const SocialMediaListItem = styled('li', {
 
 const Anchor = styled('a', {
   textDecoration: 'none',
-  color: 'white',
+  color: 'inherit',
 });
 
-const Social = React.memo(() => (
+const Social = memo(() => (
   <SocialMediaList>
     {
       SOCIAL.map((item) => (

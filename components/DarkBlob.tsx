@@ -25,7 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import React from 'react';
+import React, { memo } from 'react';
 
 import dynamic from 'next/dynamic';
 import { GLBackgroundProps } from './GLBackground';
@@ -164,7 +164,7 @@ const GLBackground = dynamic<GLBackgroundProps>(
   },
 );
 
-const DarkBlob = React.memo(() => (
+const DarkBlob = memo(() => (
   <GLBackground
     scale={SCREEN_SCALE}
     fragment={FRAGMENT}
