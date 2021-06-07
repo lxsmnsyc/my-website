@@ -26,29 +26,19 @@
  * @copyright Alexis Munsayac 2020
  */
 import React from 'react';
-import dynamic from 'next/dynamic';
 
-import SmoothCursor from '../models/SmoothCursor';
-import Container from '../components/Container';
-import TextOuterContainer from '../components/TextOuterContainer';
-import TextInnerContainer from '../components/TextInnerContainer';
-import Greetings from '../components/Greetings';
-import Hobbies from '../components/Hobbies';
-import AppHead from '../components/AppHead';
-import Social from '../components/Social';
+import SmoothCursor from './models/SmoothCursor';
+import Container from './components/Container';
+import TextOuterContainer from './components/TextOuterContainer';
+import TextInnerContainer from './components/TextInnerContainer';
+import Greetings from './components/Greetings';
+import Hobbies from './components/Hobbies';
+import Social from './components/Social';
+import DarkBlob from './components/DarkBlob';
 
-const DarkBlob = dynamic<any>(
-  () => import('../components/DarkBlob')
-    .then((mod) => mod.default),
-  {
-    ssr: false,
-  },
-);
-
-export default function Index() {
+export default function Index(): JSX.Element {
   return (
     <SmoothCursor.Provider>
-      <AppHead />
       <Container>
         <DarkBlob />
         <TextOuterContainer>

@@ -26,11 +26,8 @@
  * @copyright Alexis Munsayac 2020
  */
 import { createNullaryModel, createSelectors } from 'react-scoped-model';
-import { useRef } from 'react';
-
-// Hooks
-import useConstantCallback from '../utils/hooks/useConstantCallback';
-import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
+import { useConstantCallback } from '@lyonph/react-hooks';
+import { useEffect, useRef } from 'react';
 
 const SmoothCursor = createNullaryModel(() => {
   const xRef = useRef(0);
@@ -39,7 +36,7 @@ const SmoothCursor = createNullaryModel(() => {
   const getX = useConstantCallback(() => xRef.current);
   const getY = useConstantCallback(() => yRef.current);
 
-  useIsomorphicEffect(() => {
+  useEffect(() => {
     let raf: number;
 
     let targetX = 0;

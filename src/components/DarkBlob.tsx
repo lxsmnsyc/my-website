@@ -25,24 +25,27 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import { styled } from 'styletron-react';
+import React, { lazy, Suspense } from 'react';
+import FRAGMENT from '../glsl/dark-blob.glsl?raw';
+import constant from '../hoc/constant';
 
-const TextInnerContainer = styled('div', {
-  width: '75%',
+const SCREEN_SCALE = 1 / 2;
 
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
+const GLBackground = lazy(() => import('./GLBackground'));
 
-  marginLeft: '32px',
-  marginRight: '32px',
-  marginTop: '16px',
-  marginBottom: '16px',
+const Fallback = constant(() => (
+  <div className="w-full h-full bg-gray-900" />
+));
 
-  '@media screen and (orientation: portrait)': {
-    width: '100%',
-  },
-});
+const DarkBlob = constant(() => (
+  <div className="w-full h-full">
+    <Suspense fallback={<Fallback />}>
+      <GLBackground
+        scale={SCREEN_SCALE}
+        fragment={FRAGMENT}
+      />
+    </Suspense>
+  </div>
+));
 
-export default TextInnerContainer;
+export default DarkBlob;

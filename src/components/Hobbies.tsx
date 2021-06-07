@@ -25,11 +25,10 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import React from 'react';
-import { styled } from 'styletron-react';
-import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
+import React, { useEffect, useRef, useState } from 'react';
+import { useConstantCallback } from '@lyonph/react-hooks';
 import stringLerp from '../utils/string-lerp';
-import useConstantCallback from '../utils/hooks/useConstantCallback';
+import constant from '../hoc/constant';
 
 const HOBBIES = [
   ' do back-end web development.',
@@ -56,16 +55,10 @@ const HOBBIES = [
 const COOLDOWN = 5.0;
 const DURATION = 1.0;
 
-const Paragraph = styled('p', {
-  fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-  color: 'white',
-  fontSize: '2rem',
-});
+const Hobbies = constant(() => {
+  const ref = useRef<HTMLHeadingElement | null>(null);
 
-const Hobbies = React.memo(() => {
-  const ref = React.useRef<HTMLHeadingElement | null>(null);
-
-  const baseList = React.useRef([...HOBBIES]);
+  const baseList = useRef([...HOBBIES]);
 
   const nextItem = useConstantCallback(() => {
     // Check if there are no more items
@@ -83,9 +76,9 @@ const Hobbies = React.memo(() => {
     return pickedItem;
   });
 
-  const [name, setName] = React.useState(nextItem);
+  const [name, setName] = useState(nextItem);
 
-  useIsomorphicEffect(() => {
+  useEffect(() => {
     const title = ref.current;
 
     if (title) {
@@ -131,9 +124,14 @@ const Hobbies = React.memo(() => {
     }
 
     return undefined;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <Paragraph ref={ref}>{`I${name}`}</Paragraph>;
+  return (
+    <p className="m-4 text-3xl font-sans" ref={ref}>
+      {`I${name}`}
+    </p>
+  );
 });
 
 export default Hobbies;

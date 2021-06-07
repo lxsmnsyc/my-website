@@ -25,18 +25,8 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import React, { memo, useRef } from 'react';
-import { styled } from 'styletron-react';
-import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useSmoothCursor } from '../models/SmoothCursor';
-
-const Canvas = styled('canvas', {
-  width: '100%',
-  height: '100%',
-  gridRow: '1 / 2',
-  gridColumn: '1 / 2',
-  zIndex: -1,
-});
 
 /**
 * Default vertex shader
@@ -156,10 +146,11 @@ export interface GLBackgroundProps {
 
 const GLBackground = memo(({ scale, fragment }: GLBackgroundProps) => {
   const [getX, getY] = useSmoothCursor();
+  const [loading, setLoading] = useState(true);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  useIsomorphicEffect(() => {
+  useEffect(() => {
     const canvas = canvasRef.current;
 
     if (!canvas) {
@@ -257,6 +248,7 @@ const GLBackground = memo(({ scale, fragment }: GLBackgroundProps) => {
           raf = requestAnimationFrame(update);
         };
 
+        setLoading(false);
         raf = requestAnimationFrame(update);
       })
       .catch(() => {
@@ -275,11 +267,14 @@ const GLBackground = memo(({ scale, fragment }: GLBackgroundProps) => {
   const { width, height } = getResolution(scale);
 
   return (
-    <Canvas
-      ref={canvasRef}
-      width={width}
-      height={height}
-    />
+    <div className="w-full h-full">
+      <canvas
+        className={`w-full h-full transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}
+        ref={canvasRef}
+        width={width}
+        height={height}
+      />
+    </div>
   );
 });
 

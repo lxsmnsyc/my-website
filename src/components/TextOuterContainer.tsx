@@ -25,10 +25,18 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import { useEffect, useLayoutEffect } from 'react';
+import React, { ReactNode } from 'react';
 
-const useIsomorphicEffect = typeof window === 'undefined'
-  ? useEffect
-  : useLayoutEffect;
+interface TextOuterContainerProps {
+  children: ReactNode
+}
 
-export default useIsomorphicEffect;
+export default function TextOuterContainer(
+  { children }: TextOuterContainerProps,
+): JSX.Element {
+  return (
+    <div className="w-full h-full flex flex-row items-center justify-start absolute top-0 left-0">
+      {children}
+    </div>
+  );
+}

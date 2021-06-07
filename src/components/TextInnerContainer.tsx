@@ -25,20 +25,48 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import { styled } from 'styletron-react';
-import { gradientStyle } from '../utils/gradient';
+// const TextInnerContainer = styled('div', {
+//   width: '75%',
 
-const TextOuterContainer = styled('div', {
-  gridRow: '1 / 2',
-  gridColumn: '1 / 2',
-  width: '100%',
-  height: '100%',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   alignItems: 'flex-start',
+//   justifyContent: 'center',
 
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  ...gradientStyle,
-});
+//   marginLeft: '32px',
+//   marginRight: '32px',
+//   marginTop: '16px',
+//   marginBottom: '16px',
 
-export default TextOuterContainer;
+//   '@media screen and (orientation: portrait)': {
+//     width: '100%',
+//   },
+// });
+
+import React, { ReactNode } from 'react';
+
+interface TextInnerContainerProps {
+  children: ReactNode
+}
+
+export default function TextInnerContainer(
+  { children }: TextInnerContainerProps,
+): JSX.Element {
+  const gradients = [
+    'preset-gradient-1',
+    'preset-gradient-2',
+    'preset-gradient-3',
+    'preset-gradient-4',
+    'preset-gradient-5',
+    'preset-gradient-6',
+    'preset-gradient-7',
+  ];
+
+  const selectedGradient = gradients[Math.floor(Math.random() * gradients.length)];
+
+  return (
+    <div className={`m-4 flex flex-col items-start justify-start bg-clip-text text-transparent gradient-text ${selectedGradient}`}>
+      {children}
+    </div>
+  );
+}

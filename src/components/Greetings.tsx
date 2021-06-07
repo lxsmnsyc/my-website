@@ -25,9 +25,8 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
-import React from 'react';
-import { styled } from 'styletron-react';
-import useIsomorphicEffect from '../utils/hooks/useIsomorphicEffect';
+import React, { useEffect, useRef, useState } from 'react';
+import constant from '../hoc/constant';
 import stringLerp from '../utils/string-lerp';
 
 const BASE_NAME = 'Alexis H. Munsayac';
@@ -35,18 +34,12 @@ const SECRET_NAME = '@lxsmnsyc';
 
 const DURATION = 1.0;
 
-const H1 = styled('h1', {
-  fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-  color: 'white',
-  fontSize: '3rem',
-});
+const Greetings = constant(() => {
+  const ref = useRef<HTMLHeadingElement | null>(null);
 
-const Greetings = React.memo(() => {
-  const ref = React.useRef<HTMLHeadingElement | null>(null);
+  const [name, setName] = useState(BASE_NAME);
 
-  const [name, setName] = React.useState(BASE_NAME);
-
-  useIsomorphicEffect(() => {
+  useEffect(() => {
     const title = ref.current;
 
     if (title) {
@@ -104,7 +97,14 @@ const Greetings = React.memo(() => {
     return undefined;
   }, []);
 
-  return <H1 ref={ref}>{`Hello, I'm ${name}!`}</H1>;
+  return (
+    <h1
+      className="m-4 text-4xl font-sans font-bold w-full"
+      ref={ref}
+    >
+      {`Hello, I'm ${name}!`}
+    </h1>
+  );
 });
 
 export default Greetings;
