@@ -140,7 +140,7 @@ export default function Index(): JSX.Element {
     <SmoothCursor>
       <div class="w-full min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center">
         <main class="flex flex-col items-center space-y space-y-4 m-8">
-          <h1 class="text-8xl text-gray-900 dark:text-gray-50 font-bold font-mono">@lxsmnsyc</h1>
+          <h1 class="text-4xl md:text-8xl text-gray-900 dark:text-gray-50 font-bold font-mono">@lxsmnsyc</h1>
           <div class="flex items-center space-x-2">
             <For each={SOCIAL}>
               {(item) => (
@@ -166,7 +166,7 @@ export default function Index(): JSX.Element {
                   <div class={URL_CONTAINER}>
                     <span class="text-xl font-mono font-semibold">{item.title}</span>
                     <p>{item.description}</p>
-                    <div class="flex flex-wrap space-x-1">
+                    <div class="flex flex-wrap gap-1">
                       <For each={item.tags}>
                         {(tag) => <span class={URL_TAG}>{tag}</span>}
                       </For>
