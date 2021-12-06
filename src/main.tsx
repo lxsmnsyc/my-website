@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'solid-js/web';
 import App from './App';
 
 import './tailwind.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+const root = document.getElementById('root');
+
+if (root) {
+  render(
+    () => <App />,
+    root,
+  );
+}

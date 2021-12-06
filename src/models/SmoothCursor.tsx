@@ -23,20 +23,34 @@
  *
  *
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
- * @copyright Alexis Munsayac 2020
+ * @copyright Alexis Munsayac 2021
  */
-import { createNullaryModel, createSelectors } from 'react-scoped-model';
-import { useConstantCallback } from '@lyonph/react-hooks';
-import { useEffect, useRef } from 'react';
+import { JSX } from 'solid-js';
 
-const SmoothCursor = createNullaryModel(() => {
-  const xRef = useRef(0);
-  const yRef = useRef(0);
+interface SmoothCursorContext {
+  x: number;
+  y: number;
+}
 
-  const getX = useConstantCallback(() => xRef.current);
-  const getY = useConstantCallback(() => yRef.current);
+const SmoothCursorContext = $createContext<SmoothCursorContext>();
 
-  useEffect(() => {
+interface SmoothCursorProps {
+  children: JSX.Element;
+}
+
+export function useSmoothCursor(): SmoothCursorContext {
+  const ctx = $useContext(SmoothCursorContext);
+  if (ctx) {
+    return ctx;
+  }
+  throw new Error('Missing SmoothCursorContext');
+}
+
+export default function SmoothCursor(props: SmoothCursorProps): JSX.Element {
+  let xRef = 0;
+  let yRef = 0;
+
+  effect: {
     let raf: number;
 
     let targetX = 0;
@@ -65,34 +79,32 @@ const SmoothCursor = createNullaryModel(() => {
       prevX += dx * dt;
       prevY += dy * dt;
 
-      xRef.current = prevX;
-      yRef.current = prevY;
+      xRef = prevX;
+      yRef = prevY;
 
       raf = requestAnimationFrame(update);
     };
 
     raf = requestAnimationFrame(update);
 
-    return () => {
+    cleanup: {
       window.removeEventListener('mousemove', onMouseMove);
       cancelAnimationFrame(raf);
-    };
-  }, []);
+    }
+  }
 
-  return {
-    getX,
-    getY,
-  };
-}, {
-  displayName: 'SmoothCursor',
-});
-
-export const useSmoothCursor = createSelectors(
-  SmoothCursor,
-  (state) => [
-    state.getX,
-    state.getY,
-  ],
-);
-
-export default SmoothCursor;
+  return (
+    <SmoothCursorContext.Provider
+      value={{
+        get x() {
+          return xRef;
+        },
+        get y() {
+          return yRef;
+        },
+      }}
+    >
+      {props.children}
+    </SmoothCursorContext.Provider>
+  );
+}

@@ -7,6 +7,12 @@
     "project": "./tsconfig.eslint.json"
   },
   "rules": {
-    "no-bitwise": "off"
+    "no-bitwise": "off",
+    "no-labels": "off",
+    "no-restricted-syntax": "off",
+    "no-unused-labels": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-unknown-property": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

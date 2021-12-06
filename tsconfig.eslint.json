@@ -4,7 +4,6 @@
   "compilerOptions": {
     "module": "ESNext",
     "lib": ["DOM", "ESNext"],
-    "types": ["vite/client"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
@@ -15,7 +14,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
     "esModuleInterop": true,
     "target": "ES2017"
   }

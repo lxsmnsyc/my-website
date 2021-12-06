@@ -1,7 +1,15 @@
-import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
+import { defineConfig } from 'vite';
+import solidPlugin from 'vite-plugin-solid';
+import solidLabels from 'babel-plugin-solid-labels';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()]
-})
+  plugins: [
+    solidPlugin({
+      babel: {
+        plugins: [
+          [solidLabels, { dev: false }],
+        ],
+      },
+    }),
+  ],
+});
