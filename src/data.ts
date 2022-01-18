@@ -7,6 +7,46 @@ interface Data {
 
 const DATA: Data[] = [
   {
+    url: 'https://github.com/LXSMNSYC/solid-styled',
+    title: 'solid-styled',
+    description: 'Reactive stylesheets for SolidJS',
+    tags: [
+      'solid-js',
+      'typescript',
+      'css',
+    ],
+  },
+  {
+    url: 'https://github.com/LXSMNSYC/solid-marked',
+    title: 'solid-marked',
+    description: 'Markdown/MDX compiler for SolidJS',
+    tags: [
+      'solid-js',
+      'typescript',
+      'compiler',
+      'markdown',
+      'mdx',
+    ],
+  },
+  {
+    url: 'https://github.com/LXSMNSYC/solid-error-overlay',
+    title: 'solid-error-overlay',
+    description: 'Dev Error Overlay for SolidJS',
+    tags: [
+      'solid-js',
+      'typescript',
+    ],
+  },
+  {
+    url: 'https://github.com/LXSMNSYC/solid-error-overlay',
+    title: 'solid-error-overlay',
+    description: 'Dev Error Overlay for SolidJS',
+    tags: [
+      'solid-js',
+      'typescript',
+    ],
+  },
+  {
     url: 'https://github.com/LXSMNSYC/solid-emoji-picker',
     title: 'solid-emoji-picker',
     description: 'Unstyled, emoji picker for SolidJS',
