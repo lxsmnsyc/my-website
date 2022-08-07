@@ -1,7 +1,7 @@
 {
   "root": true,
   "extends": [
-    "lxsmnsyc/typescript/react"
+    "lxsmnsyc/typescript/solid"
   ],
   "parserOptions": {
     "project": "./tsconfig.eslint.json"
@@ -10,9 +10,6 @@
     "no-bitwise": "off",
     "no-labels": "off",
     "no-restricted-syntax": "off",
-    "no-unused-labels": "off",
-    "react/destructuring-assignment": "off",
-    "react/no-unknown-property": "off",
-    "react/jsx-props-no-spreading": "off"
+    "no-unused-labels": "off"
   }
 }

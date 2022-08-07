@@ -25,10 +25,25 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2020
  */
+import { Feed, FeedArticle, FeedArticleDescription, FeedArticleLabel, FeedContent } from 'solid-headless';
 import { For, JSX } from 'solid-js';
-import DATA from './data';
+import getData, { FetchedData } from './data';
 import SmoothCursor from './models/SmoothCursor';
 import classNames from './utils/class-names';
+
+function SpinnerIcon(props: JSX.IntrinsicElements['svg']): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+    </svg>
+  );
+}
 
 function Github(props: JSX.IntrinsicElements['svg']) {
   return (
@@ -136,10 +151,46 @@ const URL_TAG = classNames(
 );
 
 export default function Index(): JSX.Element {
+  let busy = $signal(false);
+  let articles = $signal<FetchedData[]>([]);
+  let page = $signal(1);
+
+  async function load() {
+    busy = true;
+    const result = await getData(page);
+    articles = [
+      ...articles,
+      ...result,
+    ];
+    busy = false;
+  }
+
+  effect: {
+    load();
+  }
+
+  function onScroll(event: Event) {
+    if (!busy) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        page += 1;
+      }
+    }
+  }
+
+  effect: {
+    document.addEventListener('scroll', onScroll, {
+      passive: true,
+    });
+
+    cleanup: {
+      document.removeEventListener('scroll', onScroll);
+    }
+  }
+
   return (
     <SmoothCursor>
       <div class="w-full min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center">
-        <main class="flex flex-col items-center space-y space-y-4 m-8">
+        <main class="flex flex-col items-center space-y space-y-4 m-8 max-w-md">
           <h1 class="text-4xl md:text-8xl text-gray-900 dark:text-gray-50 font-bold font-mono">@lxsmnsyc</h1>
           <div class="flex items-center space-x-2">
             <For each={SOCIAL}>
@@ -155,27 +206,41 @@ export default function Index(): JSX.Element {
               )}
             </For>
           </div>
-          <div class="flex flex-col space-y-2 items-center w-full">
-            <For each={DATA}>
-              {(item) => (
-                <a
-                  href={item.url}
-                  title={`${item.title} - ${item.description}`}
-                  class={URL}
-                >
-                  <div class={URL_CONTAINER}>
-                    <span class="text-xl font-mono font-semibold">{item.title}</span>
-                    <p>{item.description}</p>
-                    <div class="flex flex-wrap gap-1">
-                      <For each={item.tags}>
-                        {(tag) => <span class={URL_TAG}>{tag}</span>}
-                      </For>
+          <Feed
+            size={articles.length}
+            busy={busy}
+          >
+            <FeedContent 
+              class="flex flex-col space-y-2 items-center w-full"
+            >
+              <For each={articles}>
+                {(item, index) => (
+                  <FeedArticle
+                    as="a"
+                    index={index()}
+                    href={item.html_url}
+                    title={`${item.name} - ${item.description}`}
+                    class={URL}
+                  >
+                    <div class={URL_CONTAINER}>
+                      <FeedArticleLabel class="text-xl font-mono font-semibold">{item.name}</FeedArticleLabel >
+                      <FeedArticleDescription>{item.description}</FeedArticleDescription>
+                      <div class="flex flex-wrap gap-1">
+                        <For each={item.topics}>
+                          {(tag) => <span class={URL_TAG}>{tag}</span>}
+                        </For>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              )}
-            </For>
-          </div>
+                  </FeedArticle>
+                )}
+              </For>
+              <solid:show when={busy}>
+                <div class="w-full flex items-center justify-center">
+                  <SpinnerIcon class="animate-spin w-5 h-5 text-white" />
+                </div>
+              </solid:show>
+            </FeedContent>
+          </Feed>
         </main>
       </div>
     </SmoothCursor>
