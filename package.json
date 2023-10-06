@@ -17,7 +17,7 @@
     "babel-plugin-solid-labels": "^0.12.1",
     "eslint": "^8.21.0",
     "eslint-config-lxsmnsyc": "^0.4.8",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.31",
     "typescript": "^4.7.4",
     "vite": "^3.0.4",
     "vite-plugin-solid": "^2.3.0"
