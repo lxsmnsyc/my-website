@@ -1,15 +1,33 @@
 export interface FetchedData {
   name: string;
-  fork: boolean;
   html_url: string;
-  forks_count: number;
-  stargazers_count: number;
-  archived: boolean;
+  description: string | null;
   topics: string[];
   language: string | null;
-  description: string | null;
+  stargazers_count: number;
+  forks_count: number;
   created_at: string;
   pushed_at: string;
+}
+
+/**
+ * Where the repositories on screen came from. The page says so when it is
+ * showing anything other than a fresh answer from GitHub.
+ */
+export type Source = 'live' | 'cache' | 'snapshot';
+
+export interface Dataset {
+  repos: FetchedData[];
+  source: Source;
+  /**
+   * When the data was produced, for the cache and the snapshot.
+   */
+  generated?: string;
+}
+
+interface Snapshot {
+  generated: string;
+  repos: FetchedData[];
 }
 
 const USER = 'lxsmnsyc';
@@ -24,9 +42,9 @@ interface Cache {
 }
 
 /**
- * Both GitHub and the browser cache hand back untyped JSON, so the shape is
- * checked before it is trusted. Only the fields the page cannot render
- * without are verified.
+ * GitHub, the browser cache and the bundled snapshot all hand back untyped
+ * JSON, so the shape is checked before it is trusted. Only the fields the
+ * page cannot render without are verified.
  */
 function isRepo(value: unknown): value is FetchedData {
   return (
@@ -54,7 +72,18 @@ function isCache(value: unknown): value is Cache {
   );
 }
 
-function readCache(allowStale: boolean): FetchedData[] | undefined {
+function isSnapshot(value: unknown): value is Snapshot {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'generated' in value &&
+    typeof value.generated === 'string' &&
+    'repos' in value &&
+    isRepoList(value.repos)
+  );
+}
+
+function readCache(allowStale: boolean): Cache | undefined {
   try {
     const raw = window.localStorage.getItem(CACHE_KEY);
     if (!raw) {
@@ -67,7 +96,7 @@ function readCache(allowStale: boolean): FetchedData[] | undefined {
     if (!allowStale && Date.now() - parsed.time > CACHE_TTL) {
       return undefined;
     }
-    return parsed.data;
+    return parsed;
   } catch {
     return undefined;
   }
@@ -79,6 +108,31 @@ function writeCache(data: FetchedData[]): void {
     window.localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
   } catch {
     // Storage is optional, ignore failures.
+  }
+}
+
+/**
+ * The snapshot is a separate chunk, so a visitor who never hits the rate
+ * limit never downloads it. Regenerate it with `pnpm snapshot`.
+ */
+async function readSnapshot(): Promise<Dataset | undefined> {
+  try {
+    const loaded: unknown = await import('./repos-snapshot.json');
+    if (
+      typeof loaded === 'object' &&
+      loaded !== null &&
+      'default' in loaded &&
+      isSnapshot(loaded.default)
+    ) {
+      return {
+        repos: loaded.default.repos,
+        source: 'snapshot',
+        generated: loaded.default.generated,
+      };
+    }
+    return undefined;
+  } catch {
+    return undefined;
   }
 }
 
@@ -96,15 +150,27 @@ async function getPage(page: number): Promise<FetchedData[]> {
   return body;
 }
 
+interface RawRepo {
+  fork?: boolean;
+  archived?: boolean;
+}
+
+function isListed(repo: FetchedData & RawRepo): boolean {
+  return repo.archived !== true && repo.fork !== true;
+}
+
 /**
  * Loads every source repository of the user, newest activity first.
- * The result is cached for the session so that a reload does not
- * burn through the anonymous GitHub rate limit.
+ *
+ * Anonymous callers get sixty GitHub requests an hour, so the answer is kept
+ * in local storage for half an hour, and when a request does fail the page
+ * falls back first to that store, however old it is, and then to the snapshot
+ * committed alongside the source.
  */
-export default async function getData(): Promise<FetchedData[]> {
-  const cached = readCache(false);
-  if (cached) {
-    return cached;
+export default async function getData(): Promise<Dataset> {
+  const fresh = readCache(false);
+  if (fresh) {
+    return { repos: fresh.data, source: 'cache', generated: new Date(fresh.time).toISOString() };
   }
 
   const collected: FetchedData[] = [];
@@ -112,7 +178,6 @@ export default async function getData(): Promise<FetchedData[]> {
   try {
     for (let page = 1; page <= MAX_PAGES; page += 1) {
       // Pages have to be requested in order to know when to stop.
-      // eslint-disable-next-line no-await-in-loop
       const result = await getPage(page);
       collected.push(...result);
       if (result.length < PER_PAGE) {
@@ -120,56 +185,20 @@ export default async function getData(): Promise<FetchedData[]> {
       }
     }
   } catch (error) {
-    // Anonymous callers get sixty requests an hour. When that runs out an
-    // out of date map still beats an empty one.
     const stale = readCache(true);
     if (stale) {
-      return stale;
+      return { repos: stale.data, source: 'cache', generated: new Date(stale.time).toISOString() };
+    }
+    const snapshot = await readSnapshot();
+    if (snapshot) {
+      return snapshot;
     }
     throw error;
   }
 
-  const filtered = collected.filter((item) => !item.archived).filter((item) => !item.fork);
+  const filtered = collected.filter(isListed);
 
   writeCache(filtered);
 
-  return filtered;
-}
-
-const LANGUAGE_COLORS: Record<string, string> = {
-  TypeScript: '#3178c6',
-  JavaScript: '#f1e05a',
-  Rust: '#dea584',
-  Dart: '#00b4ab',
-  Python: '#3572a5',
-  'C++': '#f34b7d',
-  C: '#555555',
-  'C#': '#178600',
-  Go: '#00add8',
-  Java: '#b07219',
-  Kotlin: '#a97bff',
-  Swift: '#f05138',
-  Ruby: '#701516',
-  Lua: '#000080',
-  Zig: '#ec915c',
-  Nix: '#7e7eff',
-  Shell: '#89e051',
-  HTML: '#e34c26',
-  CSS: '#563d7c',
-  SCSS: '#c6538c',
-  Vue: '#41b883',
-  Svelte: '#ff3e00',
-  Astro: '#ff5a03',
-  MDX: '#fcb32c',
-  Solidity: '#aa6746',
-  Elixir: '#6e4a7e',
-  Haskell: '#5e5086',
-  OCaml: '#3be133',
-};
-
-export function getLanguageColor(language: string | null): string {
-  if (language && language in LANGUAGE_COLORS) {
-    return LANGUAGE_COLORS[language];
-  }
-  return '#8b949e';
+  return { repos: filtered, source: 'live' };
 }

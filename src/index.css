@@ -38,27 +38,14 @@ svg {
   --red: #d81e05;
   --blue: #0b3eae;
   --yellow: #f5c400;
-  --line: 3px;
+  --line: 6px;
   --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* The composition inverts rather than dimming: the grid stays the loud
-       element, it just switches from black lines to white ones. */
-    --paper: #0c0c0c;
-    --ink: #f2efe6;
-    --red: #e33a20;
-    --blue: #2a5be0;
-    --yellow: #ffd21e;
-    color-scheme: dark;
-  }
-}
-
 body {
-  background: var(--paper);
+  background: var(--ink);
   color: var(--ink);
   font-family: var(--mono);
   overflow: hidden;
@@ -82,19 +69,21 @@ body {
 .stage {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--line);
   width: 100%;
   height: 100vh;
   height: 100dvh;
-  padding: clamp(0.75rem, 2vw, 1.5rem);
+  padding: var(--line);
   overflow: hidden;
-  background: var(--paper);
+  background: var(--ink);
 }
 
 /* ------------------------------------------------------------------ bar -- */
 
 .bar {
   display: flex;
+  min-width: 0;
   flex-wrap: wrap;
   align-items: stretch;
   gap: var(--line);
@@ -104,7 +93,7 @@ body {
   flex: 1 1 22rem;
   min-width: 0;
   padding: 0.75rem 0.9rem;
-  border: var(--line) solid var(--ink);
+  background: var(--paper);
 }
 
 .title {
@@ -136,7 +125,7 @@ body {
   display: grid;
   place-items: center;
   width: 3rem;
-  border: var(--line) solid var(--ink);
+  background: var(--paper);
   color: var(--ink);
 }
 
@@ -152,7 +141,12 @@ body {
 
 .social:nth-child(3):hover {
   background: var(--yellow);
-  color: var(--ink);
+  color: #111111;
+}
+
+.social:nth-child(4):hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .social:focus-visible {
@@ -174,7 +168,6 @@ body {
 .search input {
   width: min(16rem, 42vw);
   padding: 0.55rem 0.7rem;
-  border: var(--line) solid var(--ink);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--mono);
@@ -200,9 +193,8 @@ body {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.4rem 0.7rem;
-  border: var(--line) solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   font-size: 0.7rem;
   text-transform: uppercase;
 }
@@ -211,17 +203,35 @@ body {
   font-weight: 700;
 }
 
+/* Marks a wall that is being drawn from the cache or the bundled snapshot
+   rather than from a live answer. */
+.stamp {
+  padding: 0.1rem 0.35rem;
+  background: var(--red);
+  color: #f2efe6;
+  font-weight: 700;
+}
+
 /* --------------------------------------------------------------- legend -- */
+
+/* Chips and the filter share the row directly above the wall. */
+.toolbar {
+  display: flex;
+  min-width: 0;
+  align-items: stretch;
+  gap: var(--line);
+}
 
 .legend {
   display: flex;
+  flex: 1 1 auto;
   flex-wrap: wrap;
+  min-width: 0;
   gap: var(--line);
 }
 
 .chip {
   padding: 0.3rem 0.7rem;
-  border: var(--line) solid var(--ink);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--mono);
@@ -253,8 +263,10 @@ body {
 /* ------------------------------------------------------------------ map -- */
 
 .canvas {
+  min-width: 0;
   min-height: 0;
-  border: var(--line) solid var(--ink);
+  /* Clips the trailing gutter the wall lays out past its own edge. */
+  overflow: hidden;
 }
 
 .map {
@@ -346,8 +358,18 @@ body {
 .map-cell.is-active,
 .map-cell:focus-visible {
   z-index: 5;
-  outline: var(--line) solid var(--ink);
-  outline-offset: calc(var(--line) * -1);
+  background: var(--blue);
+  color: #f2efe6;
+  outline: none;
+}
+
+/* Blue blocks would not change, so they take the other primary. Filling with
+   the line colour is not an option either: that is the colour of the gutters
+   and the block would vanish into the grid. */
+.map-cell.is-blue:hover,
+.map-cell.is-blue.is-active,
+.map-cell.is-blue:focus-visible {
+  background: var(--red);
 }
 
 .map-cell.is-hidden {
@@ -407,7 +429,7 @@ body {
   flex-wrap: wrap;
   gap: 0.25rem 1rem;
   padding: 0.4rem 0.6rem;
-  border: var(--line) solid var(--ink);
+  background: var(--paper);
   font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -423,7 +445,6 @@ body {
   z-index: 10;
   width: min(24rem, calc(100vw - 1.5rem));
   padding: 0.7rem 0.85rem;
-  border: var(--line) solid var(--ink);
   background: var(--paper);
   box-shadow: 8px 8px 0 var(--ink);
   opacity: 0;
@@ -438,8 +459,6 @@ body {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  padding-bottom: 0.4rem;
-  border-bottom: var(--line) solid var(--ink);
 }
 
 .detail-head h2 {
@@ -487,7 +506,8 @@ body {
 
 .detail-tag {
   padding: 0.1rem 0.4rem;
-  border: 2px solid var(--ink);
+  background: var(--yellow);
+  color: #111111;
   font-size: 0.62rem;
   text-transform: uppercase;
 }
@@ -516,6 +536,10 @@ body {
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
+  }
+
+  .search input {
+    width: 6rem;
   }
 
   .legend::-webkit-scrollbar {

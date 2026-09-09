@@ -35,7 +35,6 @@ interface Group {
 }
 
 const GROUP_HEADER = 26;
-const GROUP_PAD = 6;
 const CELL_GAP = 6;
 
 function groupOf(repos: FetchedData[]): Group[] {
@@ -139,24 +138,19 @@ export default function RepoTreemap(props: RepoTreemapProps): JSX.Element {
     if (width === 0 || height === 0) {
       return [];
     }
+    const bounds: Rect = {
+      x: 0,
+      y: 0,
+      width,
+      height,
+    };
     const all = groupOf(visible());
     if (props.zoom || all.length === 1) {
-      return all.map((group) => ({
-        item: group,
-        x: 0,
-        y: 0,
-        width,
-        height,
-      }));
+      return all.map((group) => ({ item: group, ...bounds }));
     }
     return treemap(
       all.map((group) => ({ value: group.weight, item: group })),
-      {
-        x: 0,
-        y: 0,
-        width,
-        height,
-      },
+      bounds,
     );
   });
 
@@ -174,10 +168,10 @@ export default function RepoTreemap(props: RepoTreemapProps): JSX.Element {
     for (const group of groups()) {
       const inner: Rect = nested
         ? {
-            x: group.x + GROUP_PAD,
+            x: group.x,
             y: group.y + GROUP_HEADER,
-            width: Math.max(0, group.width - GROUP_PAD * 2),
-            height: Math.max(0, group.height - GROUP_HEADER - GROUP_PAD),
+            width: group.width,
+            height: Math.max(0, group.height - GROUP_HEADER),
           }
         : {
             x: group.x,
@@ -192,8 +186,14 @@ export default function RepoTreemap(props: RepoTreemapProps): JSX.Element {
       );
 
       for (const cell of cells) {
-        const width = Math.max(0, cell.width - CELL_GAP);
-        const height = Math.max(0, cell.height - CELL_GAP);
+        // Trimming the right and bottom edge of a block is what leaves the
+        // gutter between it and its neighbour. Blocks that sit against the
+        // edge of the wall have no neighbour there and stay flush, so the only
+        // spacing around the wall is the page gap, which is a gutter wide.
+        const atRight = cell.x + cell.width >= size().width - 0.5;
+        const atBottom = cell.y + cell.height >= size().height - 0.5;
+        const width = Math.max(0, cell.width - (atRight ? 0 : CELL_GAP));
+        const height = Math.max(0, cell.height - (atBottom ? 0 : CELL_GAP));
         // The label is monospaced, so its width is close to
         // `characters * 0.62 * fontSize`. Solve that for the font size the
         // cell can actually afford, counting the star badge and padding.

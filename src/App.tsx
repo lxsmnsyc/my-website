@@ -60,6 +60,20 @@ function Twitter(props: JSX.IntrinsicElements['svg']): JSX.Element {
   );
 }
 
+function LinkedIn(props: JSX.IntrinsicElements['svg']): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+      {...props}
+    >
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+    </svg>
+  );
+}
+
 interface SocialData {
   url: string;
   icon: (props: JSX.IntrinsicElements['svg']) => JSX.Element;
@@ -81,6 +95,11 @@ const SOCIAL: SocialData[] = [
     url: 'https://codepen.io/lxsmnsyc',
     icon: Codepen,
     title: 'Codepen',
+  },
+  {
+    url: 'https://www.linkedin.com/in/alexis-munsayac-467a27124/',
+    icon: LinkedIn,
+    title: 'LinkedIn',
   },
 ];
 
@@ -178,7 +197,10 @@ export default function Index(): JSX.Element {
   const [zoom, setZoom] = createSignal<string | undefined>();
   const [active, setActive] = createSignal<Anchor | undefined>();
 
-  const all = createMemo(() => repos() ?? []);
+  const all = createMemo(() => repos()?.repos ?? []);
+
+  // Says so when the wall is not coming straight from GitHub.
+  const source = createMemo(() => repos()?.source ?? 'live');
 
   const stars = createMemo(() => all().reduce((total, item) => total + item.stargazers_count, 0));
 
@@ -220,8 +242,6 @@ export default function Index(): JSX.Element {
 
   return (
     <div class="stage">
-      <div class="stage-glow" aria-hidden="true" />
-
       <header class="bar">
         <div class="bar-identity">
           <h1 class="title">
@@ -247,17 +267,6 @@ export default function Index(): JSX.Element {
         </nav>
 
         <div class="bar-controls">
-          <div class="search">
-            <input
-              type="search"
-              aria-label="Filter repositories"
-              placeholder="filter"
-              value={query()}
-              onInput={(event) => {
-                setQuery(event.currentTarget.value);
-              }}
-            />
-          </div>
           <div class="counters">
             <Show
               when={hits() !== undefined}
@@ -279,36 +288,55 @@ export default function Index(): JSX.Element {
                 {` of ${all().length} match`}
               </span>
             </Show>
+            <Show when={source() !== 'live'}>
+              <span class="stamp" title={`GitHub is rate limiting, showing a ${source()} copy`}>
+                {source() === 'snapshot' ? 'offline copy' : 'cached'}
+              </span>
+            </Show>
           </div>
         </div>
       </header>
 
-      <div class="legend">
-        <button
-          type="button"
-          class="chip"
-          classList={{ 'is-on': zoom() === undefined }}
-          onClick={() => {
-            setZoom(undefined);
-          }}
-        >
-          all
-        </button>
-        <For each={languages()}>
-          {([language, count]) => (
-            <button
-              type="button"
-              class="chip"
-              classList={{ 'is-on': zoom() === language }}
-              onClick={() => {
-                setZoom(zoom() === language ? undefined : language);
-              }}
-            >
-              {language}
-              <span class="chip-count">{count}</span>
-            </button>
-          )}
-        </For>
+      <div class="toolbar">
+        <div class="legend">
+          <button
+            type="button"
+            class="chip"
+            classList={{ 'is-on': zoom() === undefined }}
+            onClick={() => {
+              setZoom(undefined);
+            }}
+          >
+            all
+          </button>
+          <For each={languages()}>
+            {([language, count]) => (
+              <button
+                type="button"
+                class="chip"
+                classList={{ 'is-on': zoom() === language }}
+                onClick={() => {
+                  setZoom(zoom() === language ? undefined : language);
+                }}
+              >
+                {language}
+                <span class="chip-count">{count}</span>
+              </button>
+            )}
+          </For>
+        </div>
+
+        <div class="search">
+          <input
+            type="search"
+            aria-label="Filter repositories"
+            placeholder="filter"
+            value={query()}
+            onInput={(event) => {
+              setQuery(event.currentTarget.value);
+            }}
+          />
+        </div>
       </div>
 
       <main class="canvas">

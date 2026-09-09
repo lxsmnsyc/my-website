@@ -24,13 +24,15 @@
     "lint:fix": "oxlint -c oxlint.config.mjs --fix",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "snapshot": "node scripts/snapshot.ts && oxfmt src/repos-snapshot.json"
   },
   "dependencies": {
     "solid-js": "^1.9.15"
   },
   "devDependencies": {
     "@lxsmnsyc/oxlint-config": "^0.1.2",
+    "@types/node": "^26.5.0",
     "babel-plugin-solid-labels": "^0.15.1",
     "oxfmt": "^0.67.0",
     "oxlint": "^1.82.0",
