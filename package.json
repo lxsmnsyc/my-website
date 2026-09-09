@@ -1,38 +1,42 @@
 {
   "name": "my-website",
-  "license": "MIT",
   "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
-  "dependencies": {
-    "solid-headless": "^0.12.4",
-    "solid-js": "^1.4.8",
-    "tailwindcss": "^3.1.8"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.8",
-    "babel-plugin-solid-labels": "^0.12.1",
-    "eslint": "^8.21.0",
-    "eslint-config-lxsmnsyc": "^0.4.8",
-    "postcss": "^8.4.16",
-    "typescript": "^4.7.4",
-    "vite": "^3.0.4",
-    "vite-plugin-solid": "^2.3.0"
-  },
-  "repository": {
-    "url": "https://github.com/lxsmnsyc/my-website.git",
-    "type": "git"
-  },
+  "private": true,
   "homepage": "https://github.com/lxsmnsyc/my-website",
   "bugs": {
     "url": "https://github.com/lxsmnsyc/my-website/issues"
   },
+  "license": "MIT",
   "author": "Alexis Munsayac",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lxsmnsyc/my-website.git"
+  },
+  "type": "module",
   "publishConfig": {
     "access": "restricted"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "oxlint -c oxlint.config.mjs",
+    "lint:fix": "oxlint -c oxlint.config.mjs --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "solid-js": "^1.9.15"
+  },
+  "devDependencies": {
+    "@lxsmnsyc/oxlint-config": "^0.1.2",
+    "babel-plugin-solid-labels": "^0.15.1",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-solid": "^2.11.14"
   }
 }
