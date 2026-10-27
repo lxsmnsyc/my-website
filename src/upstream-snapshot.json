@@ -1,0 +1,142 @@
+{
+  "generated": "2026-10-27T13:25:25.775Z",
+  "repos": [
+    {
+      "name": "solid-start",
+      "html_url": "https://github.com/solidjs/solid-start",
+      "description": "SolidStart, the Solid app framework",
+      "topics": [
+        "file-system-routing",
+        "fine-grained-reactivity",
+        "meta-framework",
+        "sdk",
+        "signals",
+        "solid-js",
+        "solidjs",
+        "solidstart",
+        "spa",
+        "ssr"
+      ],
+      "language": "TypeScript",
+      "stargazers_count": 5920,
+      "forks_count": 424,
+      "created_at": "2021-03-30T03:42:11Z",
+      "pushed_at": "2026-10-24T20:52:23Z",
+      "owner": "solidjs",
+      "prs": 60
+    },
+    {
+      "name": "react-scan",
+      "html_url": "https://github.com/aidenybai/react-scan",
+      "description": "Scan and fix React performance issues",
+      "topics": ["javascript", "react", "react-dom", "react-scan", "rendering"],
+      "language": "TypeScript",
+      "stargazers_count": 21879,
+      "forks_count": 391,
+      "created_at": "2024-09-02T21:52:12Z",
+      "pushed_at": "2026-08-16T09:23:35Z",
+      "owner": "aidenybai",
+      "prs": 22
+    },
+    {
+      "name": "solid-vite-plugin",
+      "html_url": "https://github.com/solidjs/solid-vite-plugin",
+      "description": "A simple integration to run solid-js with vite",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 524,
+      "forks_count": 72,
+      "created_at": "2020-07-12T11:26:32Z",
+      "pushed_at": "2026-10-27T08:54:37Z",
+      "owner": "solidjs",
+      "prs": 21
+    },
+    {
+      "name": "solid-refresh",
+      "html_url": "https://github.com/solidjs/solid-refresh",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 99,
+      "forks_count": 27,
+      "created_at": "2021-02-20T09:01:51Z",
+      "pushed_at": "2026-04-17T06:09:55Z",
+      "owner": "solidjs",
+      "prs": 20
+    },
+    {
+      "name": "solid",
+      "html_url": "https://github.com/solidjs/solid",
+      "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+      "topics": [
+        "declarative",
+        "fine-grained",
+        "javascript",
+        "jsx",
+        "performance",
+        "proxies",
+        "reactive",
+        "solid"
+      ],
+      "language": "TypeScript",
+      "stargazers_count": 36183,
+      "forks_count": 1137,
+      "created_at": "2018-04-24T16:36:27Z",
+      "pushed_at": "2026-10-27T09:43:07Z",
+      "owner": "solidjs",
+      "prs": 14
+    },
+    {
+      "name": "dom-expressions",
+      "html_url": "https://github.com/ryansolid/dom-expressions",
+      "description": "A Fine-Grained Runtime for Performant DOM Rendering",
+      "topics": [],
+      "language": "JavaScript",
+      "stargazers_count": 1018,
+      "forks_count": 179,
+      "created_at": "2019-04-07T02:45:00Z",
+      "pushed_at": "2026-10-07T16:49:50Z",
+      "owner": "ryansolid",
+      "prs": 14
+    },
+    {
+      "name": "solid-image",
+      "html_url": "https://github.com/solidjs/solid-image",
+      "description": "Image component",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 8,
+      "forks_count": 1,
+      "created_at": "2026-07-24T16:51:43Z",
+      "pushed_at": "2026-10-27T06:34:57Z",
+      "owner": "solidjs",
+      "prs": 7
+    },
+    {
+      "name": "solid-start-devtools",
+      "html_url": "https://github.com/solidjs/solid-start-devtools",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 2,
+      "forks_count": 2,
+      "created_at": "2026-08-19T17:19:14Z",
+      "pushed_at": "2026-10-27T09:07:41Z",
+      "owner": "solidjs",
+      "prs": 7
+    },
+    {
+      "name": "bippy",
+      "html_url": "https://github.com/aidenybai/bippy",
+      "description": "⚠️ hack into react internals",
+      "topics": ["bippy", "fiber", "internal", "react", "reconciler"],
+      "language": "TypeScript",
+      "stargazers_count": 1434,
+      "forks_count": 40,
+      "created_at": "2024-12-03T12:28:22Z",
+      "pushed_at": "2026-10-27T12:50:46Z",
+      "owner": "aidenybai",
+      "prs": 5
+    }
+  ]
+}
