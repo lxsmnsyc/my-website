@@ -1,3 +1,5 @@
+import upstreamSnapshot from './upstream-snapshot.json';
+
 export interface FetchedData {
   name: string;
   html_url: string;
@@ -8,6 +10,18 @@ export interface FetchedData {
   forks_count: number;
   created_at: string;
   pushed_at: string;
+}
+
+/**
+ * A repository owned by someone else that the user has contributed to.
+ * `name` is the repository name without its owner.
+ */
+export interface UpstreamData extends FetchedData {
+  owner: string;
+  /**
+   * Pull requests by the user merged into it.
+   */
+  prs: number;
 }
 
 /**
@@ -23,7 +37,14 @@ export interface Dataset {
    * When the data was produced, for the cache and the snapshot.
    */
   generated?: string;
+  /**
+   * Contributions to other people's repositories. These only come from the
+   * bundled snapshot: GitHub's search API is too rate limited to ask live.
+   */
+  upstream: UpstreamData[];
 }
+
+type RepoSet = Omit<Dataset, 'upstream'>;
 
 interface Snapshot {
   generated: string;
@@ -115,7 +136,7 @@ function writeCache(data: FetchedData[]): void {
  * The snapshot is a separate chunk, so a visitor who never hits the rate
  * limit never downloads it. Regenerate it with `pnpm snapshot`.
  */
-async function readSnapshot(): Promise<Dataset | undefined> {
+async function readSnapshot(): Promise<RepoSet | undefined> {
   try {
     const loaded: unknown = await import('./repos-snapshot.json');
     if (
@@ -167,7 +188,7 @@ function isListed(repo: FetchedData & RawRepo): boolean {
  * falls back first to that store, however old it is, and then to the snapshot
  * committed alongside the source.
  */
-export default async function getData(): Promise<Dataset> {
+async function loadRepos(): Promise<RepoSet> {
   const fresh = readCache(false);
   if (fresh) {
     return { repos: fresh.data, source: 'cache', generated: new Date(fresh.time).toISOString() };
@@ -201,4 +222,41 @@ export default async function getData(): Promise<Dataset> {
   writeCache(filtered);
 
   return { repos: filtered, source: 'live' };
+}
+
+function isUpstream(value: unknown): value is UpstreamData {
+  return (
+    isRepo(value) &&
+    'owner' in value &&
+    typeof value.owner === 'string' &&
+    'prs' in value &&
+    typeof value.prs === 'number'
+  );
+}
+
+function readUpstream(): UpstreamData[] {
+  const value: unknown = upstreamSnapshot;
+  const result: UpstreamData[] = [];
+  if (
+    typeof value === 'object' &&
+    value !== null &&
+    'repos' in value &&
+    Array.isArray(value.repos)
+  ) {
+    for (const entry of value.repos) {
+      if (isUpstream(entry)) {
+        result.push(entry);
+      }
+    }
+  }
+  return result;
+}
+
+/**
+ * The user's own repositories, see loadRepos, along with the bundled list of
+ * repositories they contribute to.
+ */
+export default async function getData(): Promise<Dataset> {
+  const repos = await loadRepos();
+  return { ...repos, upstream: readUpstream() };
 }

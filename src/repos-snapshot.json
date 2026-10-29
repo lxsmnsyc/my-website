@@ -1,16 +1,27 @@
 {
-  "generated": "2026-09-09T17:47:29.640Z",
+  "generated": "2026-10-27T13:25:25.775Z",
   "repos": [
     {
-      "name": "my-website",
-      "html_url": "https://github.com/lxsmnsyc/my-website",
-      "description": "My personal website",
+      "name": "brumate",
+      "html_url": "https://github.com/lxsmnsyc/brumate",
+      "description": "A component language and compiler for web apps that resume instead of hydrating",
       "topics": [],
       "language": "TypeScript",
-      "stargazers_count": 5,
+      "stargazers_count": 6,
       "forks_count": 0,
-      "created_at": "2019-06-06T04:01:45Z",
-      "pushed_at": "2026-09-09T17:41:23Z"
+      "created_at": "2026-10-20T19:25:08Z",
+      "pushed_at": "2026-10-27T13:23:34Z"
+    },
+    {
+      "name": "silmaril",
+      "html_url": "https://github.com/lxsmnsyc/silmaril",
+      "description": "Compile-time reactivity for JS",
+      "topics": ["javascript", "reactive-programming"],
+      "language": "TypeScript",
+      "stargazers_count": 30,
+      "forks_count": 1,
+      "created_at": "2022-09-18T16:08:36Z",
+      "pushed_at": "2026-10-27T12:43:59Z"
     },
     {
       "name": "overwander",
@@ -18,10 +29,10 @@
       "description": "A procedurally-generated, open world, Pokemon game. Made with 💙 ",
       "topics": ["open-world-game", "pokemon", "procedural-generation"],
       "language": "TypeScript",
-      "stargazers_count": 0,
-      "forks_count": 0,
+      "stargazers_count": 5,
+      "forks_count": 2,
       "created_at": "2026-06-28T12:11:59Z",
-      "pushed_at": "2026-09-09T15:04:09Z"
+      "pushed_at": "2026-10-27T11:12:56Z"
     },
     {
       "name": "atemno",
@@ -29,131 +40,10 @@
       "description": "Fine-grained reactive library inspired by RecoilJS",
       "topics": [],
       "language": "TypeScript",
-      "stargazers_count": 3,
+      "stargazers_count": 4,
       "forks_count": 0,
       "created_at": "2025-02-14T18:17:00Z",
-      "pushed_at": "2026-09-09T01:55:00Z"
-    },
-    {
-      "name": "seroval",
-      "html_url": "https://github.com/lxsmnsyc/seroval",
-      "description": "Stringify JS values",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 729,
-      "forks_count": 18,
-      "created_at": "2023-02-05T17:52:28Z",
-      "pushed_at": "2026-09-08T11:16:49Z"
-    },
-    {
-      "name": "terracotta",
-      "html_url": "https://github.com/lxsmnsyc/terracotta",
-      "description": "Headless UI for SolidJS",
-      "topics": ["a11y", "accessibility", "headless-ui", "solid-js", "tailwindcss"],
-      "language": "TypeScript",
-      "stargazers_count": 704,
-      "forks_count": 18,
-      "created_at": "2021-08-19T12:46:08Z",
-      "pushed_at": "2026-09-08T02:04:52Z"
-    },
-    {
-      "name": "solid-mason",
-      "html_url": "https://github.com/lxsmnsyc/solid-mason",
-      "description": "Masonry layout for SolidJS",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 44,
-      "forks_count": 0,
-      "created_at": "2023-02-11T15:09:55Z",
-      "pushed_at": "2026-09-07T18:30:43Z"
-    },
-    {
-      "name": "solid-styled",
-      "html_url": "https://github.com/lxsmnsyc/solid-styled",
-      "description": "Reactive stylesheets for SolidJS",
-      "topics": ["css", "css-in-js", "scoped-css", "solid-js"],
-      "language": "TypeScript",
-      "stargazers_count": 195,
-      "forks_count": 12,
-      "created_at": "2022-01-17T08:36:15Z",
-      "pushed_at": "2026-09-07T16:37:13Z"
-    },
-    {
-      "name": "solid-labels",
-      "html_url": "https://github.com/lxsmnsyc/solid-labels",
-      "description": "Simple, reactive labels for SolidJS",
-      "topics": ["babel-plugin", "solid-js"],
-      "language": "TypeScript",
-      "stargazers_count": 256,
-      "forks_count": 11,
-      "created_at": "2021-09-16T16:46:06Z",
-      "pushed_at": "2026-09-07T16:03:45Z"
-    },
-    {
-      "name": "solid-floating-ui",
-      "html_url": "https://github.com/lxsmnsyc/solid-floating-ui",
-      "description": "SolidJS bindings for Floating UI",
-      "topics": ["floating-ui", "solid-js"],
-      "language": "TypeScript",
-      "stargazers_count": 100,
-      "forks_count": 4,
-      "created_at": "2022-07-19T13:48:08Z",
-      "pushed_at": "2026-09-03T10:37:22Z"
-    },
-    {
-      "name": "compostate",
-      "html_url": "https://github.com/lxsmnsyc/compostate",
-      "description": "Composable and reactive state management library",
-      "topics": ["composition", "preact", "react", "reactivity", "state-management"],
-      "language": "TypeScript",
-      "stargazers_count": 35,
-      "forks_count": 0,
-      "created_at": "2021-04-19T14:33:54Z",
-      "pushed_at": "2026-09-03T08:59:45Z"
-    },
-    {
-      "name": "terracotta-docs",
-      "html_url": "https://github.com/lxsmnsyc/terracotta-docs",
-      "description": "Docs for Terracotta 2.0",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "created_at": "2026-09-02T14:34:09Z",
-      "pushed_at": "2026-09-02T14:55:19Z"
-    },
-    {
-      "name": "solid-use",
-      "html_url": "https://github.com/lxsmnsyc/solid-use",
-      "description": "A collection of SolidJS utilities",
-      "topics": ["reactivity", "solid-js"],
-      "language": "TypeScript",
-      "stargazers_count": 193,
-      "forks_count": 6,
-      "created_at": "2021-08-16T05:04:05Z",
-      "pushed_at": "2026-09-02T13:14:32Z"
-    },
-    {
-      "name": "solid-marked",
-      "html_url": "https://github.com/lxsmnsyc/solid-marked",
-      "description": "MDX Compiler for SolidJS",
-      "topics": ["markdown", "solid-js"],
-      "language": "TypeScript",
-      "stargazers_count": 74,
-      "forks_count": 1,
-      "created_at": "2022-01-08T03:03:46Z",
-      "pushed_at": "2026-09-02T08:39:39Z"
-    },
-    {
-      "name": "solid-gpui",
-      "html_url": "https://github.com/lxsmnsyc/solid-gpui",
-      "description": null,
-      "topics": [],
-      "language": "Rust",
-      "stargazers_count": 32,
-      "forks_count": 1,
-      "created_at": "2026-08-23T17:28:32Z",
-      "pushed_at": "2026-08-24T14:55:05Z"
+      "pushed_at": "2026-10-27T07:13:54Z"
     },
     {
       "name": "oxlint-config",
@@ -164,7 +54,337 @@
       "stargazers_count": 0,
       "forks_count": 0,
       "created_at": "2026-08-06T04:42:46Z",
-      "pushed_at": "2026-08-06T18:31:42Z"
+      "pushed_at": "2026-10-27T07:09:35Z"
+    },
+    {
+      "name": "thumbgen",
+      "html_url": "https://github.com/lxsmnsyc/thumbgen",
+      "description": "Thumbnail generator app made with SolidJS",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 4,
+      "forks_count": 1,
+      "created_at": "2023-10-24T06:27:09Z",
+      "pushed_at": "2026-10-27T07:06:37Z"
+    },
+    {
+      "name": "terracotta",
+      "html_url": "https://github.com/lxsmnsyc/terracotta",
+      "description": "Headless UI for SolidJS",
+      "topics": ["a11y", "accessibility", "headless-ui", "solid-js", "tailwindcss"],
+      "language": "TypeScript",
+      "stargazers_count": 706,
+      "forks_count": 19,
+      "created_at": "2021-08-19T12:46:08Z",
+      "pushed_at": "2026-10-27T06:53:57Z"
+    },
+    {
+      "name": "solid-styled",
+      "html_url": "https://github.com/lxsmnsyc/solid-styled",
+      "description": "Reactive stylesheets for SolidJS",
+      "topics": ["css", "css-in-js", "scoped-css", "solid-js"],
+      "language": "TypeScript",
+      "stargazers_count": 194,
+      "forks_count": 12,
+      "created_at": "2022-01-17T08:36:15Z",
+      "pushed_at": "2026-10-27T06:49:24Z"
+    },
+    {
+      "name": "solid-floating-ui",
+      "html_url": "https://github.com/lxsmnsyc/solid-floating-ui",
+      "description": "SolidJS bindings for Floating UI",
+      "topics": ["floating-ui", "solid-js"],
+      "language": "TypeScript",
+      "stargazers_count": 100,
+      "forks_count": 4,
+      "created_at": "2022-07-19T13:48:08Z",
+      "pushed_at": "2026-10-27T06:46:51Z"
+    },
+    {
+      "name": "seroval",
+      "html_url": "https://github.com/lxsmnsyc/seroval",
+      "description": "Stringify JS values",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 734,
+      "forks_count": 18,
+      "created_at": "2023-02-05T17:52:28Z",
+      "pushed_at": "2026-10-27T06:44:33Z"
+    },
+    {
+      "name": "solid-labels",
+      "html_url": "https://github.com/lxsmnsyc/solid-labels",
+      "description": "Simple, reactive labels for SolidJS",
+      "topics": ["babel-plugin", "solid-js"],
+      "language": "TypeScript",
+      "stargazers_count": 256,
+      "forks_count": 11,
+      "created_at": "2021-09-16T16:46:06Z",
+      "pushed_at": "2026-10-27T06:34:51Z"
+    },
+    {
+      "name": "writbearer",
+      "html_url": "https://github.com/lxsmnsyc/writbearer",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "created_at": "2026-10-07T14:12:09Z",
+      "pushed_at": "2026-10-27T06:18:04Z"
+    },
+    {
+      "name": "wathena",
+      "html_url": "https://github.com/lxsmnsyc/wathena",
+      "description": "Go game server and web client for Ragnarok Online game files, rebuilt from rAthena",
+      "topics": [],
+      "language": "Go",
+      "stargazers_count": 1,
+      "forks_count": 1,
+      "created_at": "2026-09-29T12:09:19Z",
+      "pushed_at": "2026-10-27T04:17:13Z"
+    },
+    {
+      "name": "agent-skills",
+      "html_url": "https://github.com/lxsmnsyc/agent-skills",
+      "description": "Agent skills: parallel-roadmap (plan and run roadmaps as a dependency graph for concurrent agents) and plain-writing.",
+      "topics": [],
+      "language": "Python",
+      "stargazers_count": 3,
+      "forks_count": 0,
+      "created_at": "2026-10-26T12:12:58Z",
+      "pushed_at": "2026-10-27T03:55:11Z"
+    },
+    {
+      "name": "compostate",
+      "html_url": "https://github.com/lxsmnsyc/compostate",
+      "description": "Composable and reactive state management library",
+      "topics": ["composition", "preact", "react", "reactivity", "state-management"],
+      "language": "TypeScript",
+      "stargazers_count": 35,
+      "forks_count": 0,
+      "created_at": "2021-04-19T14:33:54Z",
+      "pushed_at": "2026-10-27T01:46:53Z"
+    },
+    {
+      "name": "solid-optimizer",
+      "html_url": "https://github.com/lxsmnsyc/solid-optimizer",
+      "description": "Experimental compile-time optimizer for SolidJS",
+      "topics": ["optimization", "solid-js", "ssr"],
+      "language": "TypeScript",
+      "stargazers_count": 22,
+      "forks_count": 0,
+      "created_at": "2022-09-22T15:57:25Z",
+      "pushed_at": "2026-10-23T09:26:28Z"
+    },
+    {
+      "name": "swr-store",
+      "html_url": "https://github.com/lxsmnsyc/swr-store",
+      "description": "Reactive, data-fetching stores with stale-while-revalidate strategy",
+      "topics": ["data-fetching", "react", "store", "swr"],
+      "language": "TypeScript",
+      "stargazers_count": 8,
+      "forks_count": 0,
+      "created_at": "2020-11-06T17:31:56Z",
+      "pushed_at": "2026-10-19T16:18:00Z"
+    },
+    {
+      "name": "solid-sfc",
+      "html_url": "https://github.com/lxsmnsyc/solid-sfc",
+      "description": "Experimental SFC compiler for SolidJS",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 26,
+      "forks_count": 0,
+      "created_at": "2021-11-22T11:11:02Z",
+      "pushed_at": "2026-10-19T14:03:08Z"
+    },
+    {
+      "name": "dismantle",
+      "html_url": "https://github.com/lxsmnsyc/dismantle",
+      "description": "Universal semi-automatic code-splitter",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 45,
+      "forks_count": 0,
+      "created_at": "2024-01-08T07:47:35Z",
+      "pushed_at": "2026-10-19T12:21:15Z"
+    },
+    {
+      "name": "open-kitchen",
+      "html_url": "https://github.com/lxsmnsyc/open-kitchen",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "created_at": "2026-10-14T16:11:23Z",
+      "pushed_at": "2026-10-14T16:11:31Z"
+    },
+    {
+      "name": "kusina-ni-marissa",
+      "html_url": "https://github.com/lxsmnsyc/kusina-ni-marissa",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "created_at": "2026-10-14T12:21:31Z",
+      "pushed_at": "2026-10-14T12:37:57Z"
+    },
+    {
+      "name": "solid-marked",
+      "html_url": "https://github.com/lxsmnsyc/solid-marked",
+      "description": "MDX Compiler for SolidJS",
+      "topics": ["markdown", "solid-js"],
+      "language": "TypeScript",
+      "stargazers_count": 74,
+      "forks_count": 1,
+      "created_at": "2022-01-08T03:03:46Z",
+      "pushed_at": "2026-10-14T07:42:12Z"
+    },
+    {
+      "name": "solid-giphy",
+      "html_url": "https://github.com/lxsmnsyc/solid-giphy",
+      "description": "SolidJS bindings for GIPHY Web SDK",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 6,
+      "forks_count": 0,
+      "created_at": "2021-10-21T03:26:11Z",
+      "pushed_at": "2026-10-05T00:27:59Z"
+    },
+    {
+      "name": "solid-mason",
+      "html_url": "https://github.com/lxsmnsyc/solid-mason",
+      "description": "Masonry layout for SolidJS",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 44,
+      "forks_count": 0,
+      "created_at": "2023-02-11T15:09:55Z",
+      "pushed_at": "2026-10-04T06:00:39Z"
+    },
+    {
+      "name": "solid-tiptap",
+      "html_url": "https://github.com/lxsmnsyc/solid-tiptap",
+      "description": "SolidJS bindings for tiptap",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 158,
+      "forks_count": 9,
+      "created_at": "2021-09-01T16:23:04Z",
+      "pushed_at": "2026-10-04T05:40:43Z"
+    },
+    {
+      "name": "luact",
+      "html_url": "https://github.com/lxsmnsyc/luact",
+      "description": "Build reactive user interfaces on Lua",
+      "topics": ["love2d", "lua", "react"],
+      "language": "Lua",
+      "stargazers_count": 35,
+      "forks_count": 1,
+      "created_at": "2019-06-24T03:44:15Z",
+      "pushed_at": "2026-10-04T05:11:12Z"
+    },
+    {
+      "name": "solid-use",
+      "html_url": "https://github.com/lxsmnsyc/solid-use",
+      "description": "A collection of SolidJS utilities",
+      "topics": ["reactivity", "solid-js"],
+      "language": "TypeScript",
+      "stargazers_count": 193,
+      "forks_count": 6,
+      "created_at": "2021-08-16T05:04:05Z",
+      "pushed_at": "2026-09-25T16:25:45Z"
+    },
+    {
+      "name": "my-website",
+      "html_url": "https://github.com/lxsmnsyc/my-website",
+      "description": "My personal website",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 5,
+      "forks_count": 0,
+      "created_at": "2019-06-06T04:01:45Z",
+      "pushed_at": "2026-09-25T16:15:33Z"
+    },
+    {
+      "name": "solid-pebble",
+      "html_url": "https://github.com/lxsmnsyc/solid-pebble",
+      "description": "State management library for SolidJS",
+      "topics": ["solid-js", "state", "state-management"],
+      "language": "TypeScript",
+      "stargazers_count": 56,
+      "forks_count": 2,
+      "created_at": "2022-08-17T14:13:09Z",
+      "pushed_at": "2026-09-25T12:33:08Z"
+    },
+    {
+      "name": "solid-auto-animate",
+      "html_url": "https://github.com/lxsmnsyc/solid-auto-animate",
+      "description": "SolidJS bindings for FormKit's AutoAnimate",
+      "topics": ["animation", "solid-js"],
+      "language": "TypeScript",
+      "stargazers_count": 36,
+      "forks_count": 2,
+      "created_at": "2022-05-21T11:57:42Z",
+      "pushed_at": "2026-09-25T12:31:06Z"
+    },
+    {
+      "name": "solid-emoji-picker",
+      "html_url": "https://github.com/lxsmnsyc/solid-emoji-picker",
+      "description": "Unstyled emoji picker for SolidJS",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 35,
+      "forks_count": 0,
+      "created_at": "2021-12-01T16:20:40Z",
+      "pushed_at": "2026-09-25T12:26:44Z"
+    },
+    {
+      "name": "stellis",
+      "html_url": "https://github.com/lxsmnsyc/stellis",
+      "description": "a no-VDOM JSX framework for SSR.",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 32,
+      "forks_count": 1,
+      "created_at": "2023-02-07T13:30:05Z",
+      "pushed_at": "2026-09-25T12:24:26Z"
+    },
+    {
+      "name": "teks",
+      "html_url": "https://github.com/lxsmnsyc/teks",
+      "description": "Filipino children games",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "created_at": "2026-09-23T14:02:01Z",
+      "pushed_at": "2026-09-23T16:18:47Z"
+    },
+    {
+      "name": "will-of-d",
+      "html_url": "https://github.com/lxsmnsyc/will-of-d",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "created_at": "2026-09-20T17:50:16Z",
+      "pushed_at": "2026-09-20T18:21:18Z"
+    },
+    {
+      "name": "humane-dates",
+      "html_url": "https://github.com/lxsmnsyc/humane-dates",
+      "description": "Human-readable dates",
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 2,
+      "forks_count": 0,
+      "created_at": "2025-11-17T06:07:15Z",
+      "pushed_at": "2026-09-15T12:58:06Z"
     },
     {
       "name": "sprite-packer",
@@ -175,7 +395,29 @@
       "stargazers_count": 0,
       "forks_count": 0,
       "created_at": "2026-07-21T10:14:57Z",
-      "pushed_at": "2026-07-21T17:38:50Z"
+      "pushed_at": "2026-09-15T12:06:13Z"
+    },
+    {
+      "name": "the-fighting-game",
+      "html_url": "https://github.com/lxsmnsyc/the-fighting-game",
+      "description": null,
+      "topics": [],
+      "language": "TypeScript",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "created_at": "2024-07-18T11:43:54Z",
+      "pushed_at": "2026-09-13T09:48:28Z"
+    },
+    {
+      "name": "solid-gpui",
+      "html_url": "https://github.com/lxsmnsyc/solid-gpui",
+      "description": null,
+      "topics": [],
+      "language": "Rust",
+      "stargazers_count": 33,
+      "forks_count": 1,
+      "created_at": "2026-08-23T17:28:32Z",
+      "pushed_at": "2026-08-24T14:55:05Z"
     },
     {
       "name": "LXSMNSYC",
@@ -222,39 +464,6 @@
       "pushed_at": "2026-01-30T23:54:17Z"
     },
     {
-      "name": "dismantle",
-      "html_url": "https://github.com/lxsmnsyc/dismantle",
-      "description": "Universal semi-automatic code-splitter",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 45,
-      "forks_count": 0,
-      "created_at": "2024-01-08T07:47:35Z",
-      "pushed_at": "2026-01-18T08:51:57Z"
-    },
-    {
-      "name": "humane-dates",
-      "html_url": "https://github.com/lxsmnsyc/humane-dates",
-      "description": "Human-readable dates",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 2,
-      "forks_count": 0,
-      "created_at": "2025-11-17T06:07:15Z",
-      "pushed_at": "2025-12-26T05:24:48Z"
-    },
-    {
-      "name": "the-fighting-game",
-      "html_url": "https://github.com/lxsmnsyc/the-fighting-game",
-      "description": null,
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 1,
-      "forks_count": 0,
-      "created_at": "2024-07-18T11:43:54Z",
-      "pushed_at": "2025-11-10T15:56:26Z"
-    },
-    {
       "name": "imitari",
       "html_url": "https://github.com/lxsmnsyc/imitari",
       "description": null,
@@ -264,28 +473,6 @@
       "forks_count": 0,
       "created_at": "2025-04-22T15:41:23Z",
       "pushed_at": "2025-09-13T04:17:10Z"
-    },
-    {
-      "name": "solid-tiptap",
-      "html_url": "https://github.com/lxsmnsyc/solid-tiptap",
-      "description": "SolidJS bindings for tiptap",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 157,
-      "forks_count": 9,
-      "created_at": "2021-09-01T16:23:04Z",
-      "pushed_at": "2025-08-06T17:15:53Z"
-    },
-    {
-      "name": "solid-optimizer",
-      "html_url": "https://github.com/lxsmnsyc/solid-optimizer",
-      "description": "Experimental compile-time optimizer for SolidJS",
-      "topics": ["optimization", "solid-js", "ssr"],
-      "language": "TypeScript",
-      "stargazers_count": 22,
-      "forks_count": 0,
-      "created_at": "2022-09-22T15:57:25Z",
-      "pushed_at": "2025-03-14T07:15:17Z"
     },
     {
       "name": "solid-cache",
@@ -352,17 +539,6 @@
       "forks_count": 1,
       "created_at": "2020-09-09T08:01:54Z",
       "pushed_at": "2025-01-20T11:51:56Z"
-    },
-    {
-      "name": "seroval-playground",
-      "html_url": "https://github.com/lxsmnsyc/seroval-playground",
-      "description": null,
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 4,
-      "forks_count": 0,
-      "created_at": "2023-11-23T11:57:19Z",
-      "pushed_at": "2025-01-07T12:14:58Z"
     },
     {
       "name": "re-use",
@@ -436,21 +612,10 @@
       "description": "All about Islands Architecture and Partial Hydration",
       "topics": ["awesome", "islands", "partial-hydration", "server-side-rendering"],
       "language": null,
-      "stargazers_count": 190,
+      "stargazers_count": 191,
       "forks_count": 5,
       "created_at": "2022-07-28T05:47:17Z",
       "pushed_at": "2024-05-01T05:17:20Z"
-    },
-    {
-      "name": "solid-emoji-picker",
-      "html_url": "https://github.com/lxsmnsyc/solid-emoji-picker",
-      "description": "Unstyled emoji picker for SolidJS",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 34,
-      "forks_count": 0,
-      "created_at": "2021-12-01T16:20:40Z",
-      "pushed_at": "2024-04-16T05:23:29Z"
     },
     {
       "name": "forgetti-playground",
@@ -495,17 +660,6 @@
       "forks_count": 0,
       "created_at": "2024-02-12T15:30:39Z",
       "pushed_at": "2024-02-12T15:19:18Z"
-    },
-    {
-      "name": "silmaril",
-      "html_url": "https://github.com/lxsmnsyc/silmaril",
-      "description": "Compile-time reactivity for JS",
-      "topics": ["javascript", "reactive-programming"],
-      "language": "TypeScript",
-      "stargazers_count": 30,
-      "forks_count": 1,
-      "created_at": "2022-09-18T16:08:36Z",
-      "pushed_at": "2024-01-31T06:02:03Z"
     },
     {
       "name": "blurhash-as",
@@ -558,28 +712,6 @@
       "pushed_at": "2024-01-28T09:41:00Z"
     },
     {
-      "name": "solid-pebble",
-      "html_url": "https://github.com/lxsmnsyc/solid-pebble",
-      "description": "State management library for SolidJS",
-      "topics": ["solid-js", "state", "state-management"],
-      "language": "TypeScript",
-      "stargazers_count": 56,
-      "forks_count": 2,
-      "created_at": "2022-08-17T14:13:09Z",
-      "pushed_at": "2024-01-28T08:06:20Z"
-    },
-    {
-      "name": "solid-auto-animate",
-      "html_url": "https://github.com/lxsmnsyc/solid-auto-animate",
-      "description": "SolidJS bindings for FormKit's AutoAnimate",
-      "topics": ["animation", "solid-js"],
-      "language": "TypeScript",
-      "stargazers_count": 36,
-      "forks_count": 2,
-      "created_at": "2022-05-21T11:57:42Z",
-      "pushed_at": "2024-01-28T03:46:48Z"
-    },
-    {
       "name": "the-raven-demo",
       "html_url": "https://github.com/lxsmnsyc/the-raven-demo",
       "description": null,
@@ -622,28 +754,6 @@
       "forks_count": 0,
       "created_at": "2020-09-11T04:34:17Z",
       "pushed_at": "2023-12-05T04:38:59Z"
-    },
-    {
-      "name": "thumbgen",
-      "html_url": "https://github.com/lxsmnsyc/thumbgen",
-      "description": "Thumbnail generator app made with SolidJS",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 4,
-      "forks_count": 1,
-      "created_at": "2023-10-24T06:27:09Z",
-      "pushed_at": "2023-10-24T08:06:53Z"
-    },
-    {
-      "name": "stellis",
-      "html_url": "https://github.com/lxsmnsyc/stellis",
-      "description": "a no-VDOM JSX framework for SSR.",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 32,
-      "forks_count": 1,
-      "created_at": "2023-02-07T13:30:05Z",
-      "pushed_at": "2023-10-19T09:27:35Z"
     },
     {
       "name": "vite-solid-ssr",
@@ -786,7 +896,7 @@
       "description": null,
       "topics": [],
       "language": "CSS",
-      "stargazers_count": 8,
+      "stargazers_count": 7,
       "forks_count": 1,
       "created_at": "2018-07-20T10:46:09Z",
       "pushed_at": "2023-04-03T04:24:49Z"
@@ -834,17 +944,6 @@
       "forks_count": 0,
       "created_at": "2022-08-05T04:58:10Z",
       "pushed_at": "2023-03-01T12:22:24Z"
-    },
-    {
-      "name": "swr-store",
-      "html_url": "https://github.com/lxsmnsyc/swr-store",
-      "description": "Reactive, data-fetching stores with stale-while-revalidate strategy",
-      "topics": ["data-fetching", "react", "store", "swr"],
-      "language": "TypeScript",
-      "stargazers_count": 7,
-      "forks_count": 0,
-      "created_at": "2020-11-06T17:31:56Z",
-      "pushed_at": "2023-02-21T13:59:26Z"
     },
     {
       "name": "oasal",
@@ -1144,17 +1243,6 @@
       "pushed_at": "2022-05-27T02:03:55Z"
     },
     {
-      "name": "solid-sfc",
-      "html_url": "https://github.com/lxsmnsyc/solid-sfc",
-      "description": "Experimental SFC compiler for SolidJS",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 26,
-      "forks_count": 0,
-      "created_at": "2021-11-22T11:11:02Z",
-      "pushed_at": "2022-05-25T16:43:51Z"
-    },
-    {
       "name": "react-util-components",
       "html_url": "https://github.com/lxsmnsyc/react-util-components",
       "description": "🧰 My collection of my home-made React Components",
@@ -1186,17 +1274,6 @@
       "forks_count": 0,
       "created_at": "2022-01-30T14:33:18Z",
       "pushed_at": "2022-01-30T14:34:24Z"
-    },
-    {
-      "name": "solid-giphy",
-      "html_url": "https://github.com/lxsmnsyc/solid-giphy",
-      "description": "SolidJS bindings for GIPHY Web SDK",
-      "topics": [],
-      "language": "TypeScript",
-      "stargazers_count": 6,
-      "forks_count": 0,
-      "created_at": "2021-10-21T03:26:11Z",
-      "pushed_at": "2022-01-25T03:10:34Z"
     },
     {
       "name": "parexgram",
@@ -1264,7 +1341,7 @@
         "vue3"
       ],
       "language": "TypeScript",
-      "stargazers_count": 63,
+      "stargazers_count": 64,
       "forks_count": 9,
       "created_at": "2021-06-03T11:52:27Z",
       "pushed_at": "2021-09-05T05:32:29Z"
@@ -1603,17 +1680,6 @@
       "forks_count": 0,
       "created_at": "2020-03-19T18:22:55Z",
       "pushed_at": "2020-03-19T18:22:57Z"
-    },
-    {
-      "name": "luact",
-      "html_url": "https://github.com/lxsmnsyc/luact",
-      "description": "Build reactive user interfaces on Lua",
-      "topics": ["love2d", "lua", "react"],
-      "language": "Lua",
-      "stargazers_count": 35,
-      "forks_count": 1,
-      "created_at": "2019-06-24T03:44:15Z",
-      "pushed_at": "2020-03-05T09:03:43Z"
     },
     {
       "name": "linked-tree",
@@ -2105,7 +2171,7 @@
       "description": "Brain is a Lua library for building multilayer perceptrons or neural networks (or just multilayer perceptrons).",
       "topics": [],
       "language": "Lua",
-      "stargazers_count": 6,
+      "stargazers_count": 7,
       "forks_count": 3,
       "created_at": "2018-05-19T13:33:28Z",
       "pushed_at": "2018-05-21T14:29:36Z"

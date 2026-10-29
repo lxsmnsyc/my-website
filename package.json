@@ -25,7 +25,7 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "typecheck": "tsc --noEmit",
-    "snapshot": "node scripts/snapshot.ts && oxfmt src/repos-snapshot.json"
+    "snapshot": "node scripts/snapshot.ts && oxfmt src/repos-snapshot.json src/upstream-snapshot.json"
   },
   "dependencies": {
     "solid-js": "^1.9.15"
